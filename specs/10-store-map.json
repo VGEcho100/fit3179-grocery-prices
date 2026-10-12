@@ -1,0 +1,154 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 700,
+  "height": 600,
+  "projection": {
+    "type": "mercator",
+    "center": [
+      145.106,
+      -37.839
+    ],
+    "scale": 21000,
+    "pointRadius": 2.6
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/clean/sa2_greater_melbourne.geojson?v=2",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#f0ece3",
+        "stroke": "#d0c8b9",
+        "strokeWidth": 0.35
+      },
+      "encoding": {
+        "shape": {
+          "field": "geometry",
+          "type": "geojson"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/clean/supermarkets_greater_melbourne.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "params": [
+        {
+          "name": "brandSelection",
+          "select": {
+            "type": "point",
+            "fields": [
+              "brand_group"
+            ]
+          },
+          "bind": "legend"
+        }
+      ],
+      "transform": [
+        {
+          "calculate": "datum.properties.brand_group",
+          "as": "brand_group"
+        },
+        {
+          "calculate": "datum.properties.name",
+          "as": "store_name"
+        },
+        {
+          "calculate": "datum.properties.sa2_name_2021",
+          "as": "sa2_name"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#fffdf8",
+        "strokeWidth": 0.4
+      },
+      "encoding": {
+        "shape": {
+          "field": "geometry",
+          "type": "geojson"
+        },
+        "color": {
+          "field": "brand_group",
+          "type": "nominal",
+          "title": "Brand group",
+          "scale": {
+            "domain": [
+              "Woolworths",
+              "Coles",
+              "Aldi",
+              "IGA",
+              "FoodWorks",
+              "Other"
+            ],
+            "range": [
+              "#2f7d49",
+              "#d64045",
+              "#1b5ca8",
+              "#e4a525",
+              "#7b4da3",
+              "#7e8881"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "columns": 3,
+            "symbolType": "circle"
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "brandSelection",
+            "value": 0.92
+          },
+          "value": 0.08
+        },
+        "tooltip": [
+          {
+            "field": "store_name",
+            "type": "nominal",
+            "title": "Store"
+          },
+          {
+            "field": "brand_group",
+            "type": "nominal",
+            "title": "Brand group"
+          },
+          {
+            "field": "sa2_name",
+            "type": "nominal",
+            "title": "SA2"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelColor": "#5e6c63",
+      "titleColor": "#17211b",
+      "domainColor": "#cfc7b8",
+      "gridColor": "#e8e2d6"
+    },
+    "legend": {
+      "labelColor": "#49574e",
+      "titleColor": "#17211b",
+      "titleFontWeight": 700,
+      "symbolStrokeWidth": 1
+    }
+  }
+}

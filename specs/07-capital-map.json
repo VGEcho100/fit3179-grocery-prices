@@ -1,0 +1,275 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 720,
+  "height": 510,
+  "projection": {
+    "type": "mercator",
+    "center": [
+      134,
+      -27.5
+    ],
+    "scale": 640
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://vega.github.io/vega-datasets/data/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.id === 36"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#ece6d9",
+        "stroke": "#8f9b92",
+        "strokeWidth": 0.8
+      }
+    },
+    {
+      "data": {
+        "url": "data/clean/abs_food_capital_city_monthly.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.measure === 'annual_percent_change' && toDate(datum.date) === toDate('2026-08-01')"
+        },
+        {
+          "lookup": "geography",
+          "from": {
+            "data": {
+              "values": [
+                {
+                  "city": "Sydney",
+                  "longitude": 151.2093,
+                  "latitude": -33.8688
+                },
+                {
+                  "city": "Melbourne",
+                  "longitude": 144.9631,
+                  "latitude": -37.8136
+                },
+                {
+                  "city": "Brisbane",
+                  "longitude": 153.0251,
+                  "latitude": -27.4698
+                },
+                {
+                  "city": "Adelaide",
+                  "longitude": 138.6007,
+                  "latitude": -34.9285
+                },
+                {
+                  "city": "Perth",
+                  "longitude": 115.8605,
+                  "latitude": -31.9505
+                },
+                {
+                  "city": "Hobart",
+                  "longitude": 147.3272,
+                  "latitude": -42.8821
+                },
+                {
+                  "city": "Darwin",
+                  "longitude": 130.8456,
+                  "latitude": -12.4634
+                },
+                {
+                  "city": "Canberra",
+                  "longitude": 149.13,
+                  "latitude": -35.2809
+                }
+              ]
+            },
+            "key": "city",
+            "fields": [
+              "longitude",
+              "latitude"
+            ]
+          }
+        },
+        {
+          "calculate": "'August 2026'",
+          "as": "period_label"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.9,
+        "stroke": "#fffdf8",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "value",
+          "type": "quantitative",
+          "title": "Annual change (%)",
+          "scale": {
+            "domain": [
+              2.4,
+              3.6
+            ],
+            "range": [
+              250,
+              1300
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal"
+          }
+        },
+        "color": {
+          "field": "value",
+          "type": "quantitative",
+          "title": "Annual change (%)",
+          "scale": {
+            "domain": [
+              2.4,
+              3.6
+            ],
+            "scheme": "orangered"
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "geography",
+            "type": "nominal",
+            "title": "Capital city"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Annual change",
+            "format": ".1f"
+          },
+          {
+            "field": "period_label",
+            "type": "nominal",
+            "title": "Period"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/clean/abs_food_capital_city_monthly.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.measure === 'annual_percent_change' && toDate(datum.date) === toDate('2026-08-01')"
+        },
+        {
+          "lookup": "geography",
+          "from": {
+            "data": {
+              "values": [
+                {
+                  "city": "Sydney",
+                  "longitude": 151.2093,
+                  "latitude": -33.8688
+                },
+                {
+                  "city": "Melbourne",
+                  "longitude": 144.9631,
+                  "latitude": -37.8136
+                },
+                {
+                  "city": "Brisbane",
+                  "longitude": 153.0251,
+                  "latitude": -27.4698
+                },
+                {
+                  "city": "Adelaide",
+                  "longitude": 138.6007,
+                  "latitude": -34.9285
+                },
+                {
+                  "city": "Perth",
+                  "longitude": 115.8605,
+                  "latitude": -31.9505
+                },
+                {
+                  "city": "Hobart",
+                  "longitude": 147.3272,
+                  "latitude": -42.8821
+                },
+                {
+                  "city": "Darwin",
+                  "longitude": 130.8456,
+                  "latitude": -12.4634
+                },
+                {
+                  "city": "Canberra",
+                  "longitude": 149.13,
+                  "latitude": -35.2809
+                }
+              ]
+            },
+            "key": "city",
+            "fields": [
+              "longitude",
+              "latitude"
+            ]
+          }
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -24,
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#17211b"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "geography"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelColor": "#5e6c63",
+      "titleColor": "#17211b",
+      "domainColor": "#cfc7b8",
+      "gridColor": "#e8e2d6"
+    },
+    "legend": {
+      "labelColor": "#49574e",
+      "titleColor": "#17211b",
+      "titleFontWeight": 700,
+      "symbolStrokeWidth": 1
+    }
+  }
+}

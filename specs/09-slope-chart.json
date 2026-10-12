@@ -1,0 +1,154 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 720,
+  "height": 410,
+  "data": {
+    "url": "data/clean/choice_state_basket_jun2026.csv"
+  },
+  "transform": [
+    {
+      "filter": "indexof(['Aldi', 'IGA'], datum.supermarket) >= 0 && indexof([\"ACT\",\"NSW\",\"QLD\",\"SA\",\"VIC\",\"WA\"], datum.state) >= 0"
+    },
+    {
+      "calculate": "toNumber(datum.basket_price_aud)",
+      "as": "basket_price"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "supermarket",
+      "type": "ordinal",
+      "title": null,
+      "sort": [
+        "Aldi",
+        "IGA"
+      ],
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 13,
+        "labelFontWeight": 700
+      }
+    },
+    "y": {
+      "field": "basket_price",
+      "type": "quantitative",
+      "title": "14-item basket price (AUD)",
+      "scale": {
+        "domain": [
+          65,
+          100
+        ],
+        "nice": false
+      },
+      "axis": {
+        "format": "$,.0f"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.4
+      },
+      "encoding": {
+        "detail": {
+          "field": "state",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "scale": {
+            "scheme": "tableau10"
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "filled": true,
+        "size": 125,
+        "stroke": "#fffdf8",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "scale": {
+            "scheme": "tableau10"
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "supermarket",
+            "type": "nominal",
+            "title": "Supermarket"
+          },
+          {
+            "field": "basket_price",
+            "type": "quantitative",
+            "title": "Basket price",
+            "format": "$,.2f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.supermarket === 'IGA'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dx": 13,
+        "align": "left",
+        "fontSize": 11,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "scale": {
+            "scheme": "tableau10"
+          },
+          "legend": null
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelColor": "#5e6c63",
+      "titleColor": "#17211b",
+      "domainColor": "#cfc7b8",
+      "gridColor": "#e8e2d6"
+    },
+    "legend": {
+      "labelColor": "#49574e",
+      "titleColor": "#17211b",
+      "titleFontWeight": 700,
+      "symbolStrokeWidth": 1
+    }
+  }
+}

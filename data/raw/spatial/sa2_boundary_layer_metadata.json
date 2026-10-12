@@ -1,0 +1,596 @@
+{
+ "currentVersion": 11.5,
+ "cimVersion": "3.5.0",
+ "id": 1,
+ "name": "SA2_GEN",
+ "type": "Feature Layer",
+ "parentLayer": null,
+ "defaultVisibility": false,
+ "minScale": 0,
+ "maxScale": 0,
+ "canScaleSymbols": false,
+ "geometryType": "esriGeometryPolygon",
+ "description": "",
+ "copyrightText": "",
+ "editFieldsInfo": null,
+ "ownershipBasedAccessControlForFeatures": null,
+ "syncCanReturnChanges": false,
+ "relationships": [],
+ "isDataVersioned": false,
+ "isDataArchived": false,
+ "infoInEstimates": [
+  "extent",
+  "count"
+ ],
+ "isDataBranchVersioned": false,
+ "isDataReplicaTracked": false,
+ "isCoGoEnabled": false,
+ "modelName": "GP_635669364",
+ "supportsRollbackOnFailureParameter": true,
+ "archivingInfo": {
+  "supportsQueryWithHistoricMoment": false,
+  "startArchivingMoment": -1
+ },
+ "supportsStatistics": true,
+ "supportsExceedsLimitStatistics": true,
+ "supportsAdvancedQueries": true,
+ "supportsValidateSQL": true,
+ "supportsCoordinatesQuantization": true,
+ "supportsQuantizationEditMode": true,
+ "supportsCalculate": true,
+ "supportsASyncCalculate": true,
+ "supportsDurableUrlForSyncModelNone": false,
+ "supportsDatumTransformation": true,
+ "advancedQueryCapabilities": {
+  "supportsPagination": true,
+  "supportsQueryWithDistance": true,
+  "supportsReturningQueryExtent": true,
+  "supportsStatistics": true,
+  "supportsPercentileStatistics": true,
+  "supportsHavingClause": true,
+  "supportsOrderBy": true,
+  "supportsDistinct": true,
+  "supportsCountDistinct": true,
+  "supportsAdvancedQueryRelated": true,
+  "supportsQueryRelatedPagination": true,
+  "supportsCurrentUserQueries": true,
+  "supportsFullTextSearch": true,
+  "fullTextSearchCapabilities": {
+   "supportsSearchOperator": true,
+   "supportsOperator": false,
+   "supportsSqlExpressionInFullText": true
+  },
+  "fullTextSearchableFields": [],
+  "supportsQueryWithResultType": true,
+  "supportsReturningGeometryCentroid": true,
+  "supportsReturningGeometryEnvelope": true,
+  "supportsSqlExpression": true,
+  "supportsQueryWithDatumTransformation": true,
+  "supportsLod": false,
+  "supportsQueryWithLodSR": false,
+  "supportsQueryAnalytic": true,
+  "supportsTrueCurve": true,
+  "supportedCurveTypes": [
+   "esriGeometryCircularArc",
+   "esriGeometryEllipticArc",
+   "esriGeometryBezier3Curve"
+  ],
+  "supportsQueryWithCacheHint": false
+ },
+ "advancedQueryAnalyticCapabilities": {
+  "supportsLinearRegression": true,
+  "supportsAsync": true,
+  "supportsPercentileAnalytic": false
+ },
+ "advancedEditingCapabilities": {
+  "supportedSqlFormatsInCalculate": [
+   "standard"
+  ],
+  "supportsAsyncApplyEdits": true,
+  "supportsApplyEditsbyUploadID": true,
+  "supportedApplyEditsUploadIDFormats": "JSON,PBF"
+ },
+ "hasGeometryProperties": true,
+ "geometryProperties": {
+  "shapeAreaFieldName": "Shape__Area",
+  "shapeLengthFieldName": "Shape__Length",
+  "units": "esriMeters"
+ },
+ "hasMetadata": true,
+ "extent": {
+  "xmin": 1.07776126166E7,
+  "ymin": -5425372.867699999,
+  "xmax": 1.87014557099E7,
+  "ymax": -1022048.4730999991,
+  "spatialReference": {
+   "wkid": 102100,
+   "latestWkid": 3857,
+   "xyTolerance": 0.001,
+   "zTolerance": 0.001,
+   "mTolerance": 0.001,
+   "falseX": -20037700,
+   "falseY": -30241100,
+   "xyUnits": 10000,
+   "falseZ": -100000,
+   "zUnits": 10000,
+   "falseM": -100000,
+   "mUnits": 10000
+  }
+ },
+ "spatialReference": {
+  "wkid": 102100,
+  "latestWkid": 3857,
+  "xyTolerance": 0.001,
+  "zTolerance": 0.001,
+  "mTolerance": 0.001,
+  "falseX": -20037700,
+  "falseY": -30241100,
+  "xyUnits": 10000,
+  "falseZ": -100000,
+  "zUnits": 10000,
+  "falseM": -100000,
+  "mUnits": 10000
+ },
+ "sourceSpatialReference": {
+  "wkid": 102100,
+  "latestWkid": 3857,
+  "xyTolerance": 0.001,
+  "zTolerance": 0.001,
+  "mTolerance": 0.001,
+  "falseX": -20037700,
+  "falseY": -30241100,
+  "xyUnits": 10000,
+  "falseZ": -100000,
+  "zUnits": 10000,
+  "falseM": -100000,
+  "mUnits": 10000
+ },
+ "drawingInfo": {
+  "renderer": {
+   "type": "simple",
+   "symbol": {
+    "type": "esriSFS",
+    "style": "esriSFSSolid",
+    "color": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "outline": {
+     "type": "esriSLS",
+     "style": "esriSLSSolid",
+     "color": [
+      227,
+      26,
+      28,
+      255
+     ],
+     "width": 1
+    }
+   }
+  },
+  "scaleSymbols": true,
+  "transparency": 0,
+  "labelingInfo": null
+ },
+ "hasM": false,
+ "hasZ": false,
+ "allowGeometryUpdates": false,
+ "allowTrueCurvesUpdates": false,
+ "onlyAllowTrueCurveUpdatesByTrueCurveClients": false,
+ "hasAttachments": false,
+ "supportsApplyEditsWithGlobalIds": false,
+ "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+ "objectIdField": "objectid",
+ "globalIdField": "",
+ "displayField": "SA2_NAME_2021",
+ "typeIdField": "",
+ "subtypeField": "",
+ "fields": [
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID",
+   "domain": null,
+   "editable": false,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "objectid"
+  },
+  {
+   "name": "sa2_code_2021",
+   "type": "esriFieldTypeString",
+   "alias": "SA2_CODE_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 9,
+   "defaultValue": null,
+   "modelName": "SA2_CODE_2021"
+  },
+  {
+   "name": "sa2_name_2021",
+   "type": "esriFieldTypeString",
+   "alias": "SA2_NAME_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 50,
+   "defaultValue": null,
+   "modelName": "SA2_NAME_2021"
+  },
+  {
+   "name": "change_flag_2021",
+   "type": "esriFieldTypeString",
+   "alias": "CHANGE_FLAG_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 1,
+   "defaultValue": null,
+   "modelName": "CHANGE_FLAG_2021"
+  },
+  {
+   "name": "change_label_2021",
+   "type": "esriFieldTypeString",
+   "alias": "CHANGE_LABEL_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 11,
+   "defaultValue": null,
+   "modelName": "CHANGE_LABEL_2021"
+  },
+  {
+   "name": "sa3_code_2021",
+   "type": "esriFieldTypeString",
+   "alias": "SA3_CODE_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 5,
+   "defaultValue": null,
+   "modelName": "SA3_CODE_2021"
+  },
+  {
+   "name": "sa3_name_2021",
+   "type": "esriFieldTypeString",
+   "alias": "SA3_NAME_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 50,
+   "defaultValue": null,
+   "modelName": "SA3_NAME_2021"
+  },
+  {
+   "name": "sa4_code_2021",
+   "type": "esriFieldTypeString",
+   "alias": "SA4_CODE_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 3,
+   "defaultValue": null,
+   "modelName": "SA4_CODE_2021"
+  },
+  {
+   "name": "sa4_name_2021",
+   "type": "esriFieldTypeString",
+   "alias": "SA4_NAME_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 50,
+   "defaultValue": null,
+   "modelName": "SA4_NAME_2021"
+  },
+  {
+   "name": "gccsa_code_2021",
+   "type": "esriFieldTypeString",
+   "alias": "GCCSA_CODE_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 5,
+   "defaultValue": null,
+   "modelName": "GCCSA_CODE_2021"
+  },
+  {
+   "name": "gccsa_name_2021",
+   "type": "esriFieldTypeString",
+   "alias": "GCCSA_NAME_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 50,
+   "defaultValue": null,
+   "modelName": "GCCSA_NAME_2021"
+  },
+  {
+   "name": "state_code_2021",
+   "type": "esriFieldTypeString",
+   "alias": "STATE_CODE_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 1,
+   "defaultValue": null,
+   "modelName": "STATE_CODE_2021"
+  },
+  {
+   "name": "state_name_2021",
+   "type": "esriFieldTypeString",
+   "alias": "STATE_NAME_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 50,
+   "defaultValue": null,
+   "modelName": "STATE_NAME_2021"
+  },
+  {
+   "name": "aus_code_2021",
+   "type": "esriFieldTypeString",
+   "alias": "AUS_CODE_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 3,
+   "defaultValue": null,
+   "modelName": "AUS_CODE_2021"
+  },
+  {
+   "name": "aus_name_2021",
+   "type": "esriFieldTypeString",
+   "alias": "AUS_NAME_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 50,
+   "defaultValue": null,
+   "modelName": "AUS_NAME_2021"
+  },
+  {
+   "name": "area_albers_sqkm",
+   "type": "esriFieldTypeDouble",
+   "alias": "AREA_ALBERS_SQKM",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "defaultValue": null,
+   "modelName": "AREA_ALBERS_SQKM"
+  },
+  {
+   "name": "asgs_loci_uri_2021",
+   "type": "esriFieldTypeString",
+   "alias": "ASGS_LOCI_URI_2021",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "length": 622,
+   "defaultValue": null,
+   "modelName": "ASGS_LOCI_URI_2021"
+  },
+  {
+   "name": "Shape__Length",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape_Length",
+   "domain": null,
+   "editable": false,
+   "nullable": true,
+   "defaultValue": null,
+   "modelName": "st_length(shape)",
+   "required": true
+  },
+  {
+   "name": "Shape__Area",
+   "type": "esriFieldTypeDouble",
+   "alias": "Shape_Area",
+   "domain": null,
+   "editable": false,
+   "nullable": true,
+   "defaultValue": null,
+   "modelName": "st_area(shape)",
+   "required": true
+  }
+ ],
+ "geometryField": {
+  "name": "shape",
+  "type": "esriFieldTypeGeometry",
+  "alias": "Shape",
+  "domain": null,
+  "editable": false,
+  "nullable": true,
+  "defaultValue": null,
+  "modelName": "shape"
+ },
+ "indexes": [
+  {
+   "name": "g1401gccsa_code_",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "gccsa_code_2021"
+  },
+  {
+   "name": "g1401gccsa_name_",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "gccsa_name_2021"
+  },
+  {
+   "name": "i1401area_albers",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "area_albers_sqkm"
+  },
+  {
+   "name": "i1401asgs_loci_u",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "asgs_loci_uri_2021"
+  },
+  {
+   "name": "i1401aus_code_20",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "aus_code_2021"
+  },
+  {
+   "name": "i1401aus_name_20",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "aus_name_2021"
+  },
+  {
+   "name": "i1401change_flag",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "change_flag_2021"
+  },
+  {
+   "name": "i1401change_labe",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "change_label_2021"
+  },
+  {
+   "name": "i1401sa2_code_20",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "sa2_code_2021"
+  },
+  {
+   "name": "i1401sa2_name_20",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "sa2_name_2021"
+  },
+  {
+   "name": "i1401sa3_code_20",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "sa3_code_2021"
+  },
+  {
+   "name": "i1401sa3_name_20",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "sa3_name_2021"
+  },
+  {
+   "name": "i1401sa4_code_20",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "sa4_code_2021"
+  },
+  {
+   "name": "i1401sa4_name_20",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "sa4_name_2021"
+  },
+  {
+   "name": "i1401state_code_",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "state_code_2021"
+  },
+  {
+   "name": "i1401state_name_",
+   "isAscending": true,
+   "isUnique": false,
+   "description": "",
+   "fields": "state_name_2021"
+  },
+  {
+   "name": "r1415_sde_rowid_uk",
+   "isAscending": true,
+   "isUnique": true,
+   "description": "",
+   "fields": "objectid"
+  },
+  {
+   "name": "a1391_ix1",
+   "isAscending": true,
+   "isUnique": true,
+   "description": "",
+   "fields": "shape"
+  }
+ ],
+ "datesInUnknownTimezone": false,
+ "dateFieldsTimeReference": {
+  "timeZone": "UTC",
+  "timeZoneIANA": "Etc/UTC",
+  "respectsDaylightSaving": false
+ },
+ "preferredTimeReference": null,
+ "types": [],
+ "templates": [
+  {
+   "name": "SA2_GEN",
+   "description": "",
+   "prototype": {
+    "attributes": {
+     "area_albers_sqkm": null,
+     "asgs_loci_uri_2021": null,
+     "sa2_code_2021": null,
+     "sa2_name_2021": null,
+     "change_flag_2021": null,
+     "change_label_2021": null,
+     "sa3_code_2021": null,
+     "sa3_name_2021": null,
+     "sa4_code_2021": null,
+     "sa4_name_2021": null,
+     "gccsa_code_2021": null,
+     "gccsa_name_2021": null,
+     "state_code_2021": null,
+     "state_name_2021": null,
+     "aus_code_2021": null,
+     "aus_name_2021": null
+    }
+   },
+   "drawingTool": "esriFeatureEditToolPolygon"
+  }
+ ],
+ "maxRecordCount": 2000,
+ "supportedQueryFormats": "JSON, geoJSON, PBF",
+ "supportedExportFormats": "sqlite,filegdb,shapefile,csv,geojson",
+ "capabilities": "Query,Extract",
+ "useStandardizedQueries": true,
+ "bigIntegerRestrictedTo53Bits": true,
+ "supportedSpatialRelationships": [
+  "esriSpatialRelIntersects",
+  "esriSpatialRelContains",
+  "esriSpatialRelCrosses",
+  "esriSpatialRelEnvelopeIntersects",
+  "esriSpatialRelIndexIntersects",
+  "esriSpatialRelOverlaps",
+  "esriSpatialRelTouches",
+  "esriSpatialRelWithin",
+  "esriSpatialRelRelation"
+ ],
+ "supportsAppend": true,
+ "supportedAppendFormats": "FILEGDB,PBF",
+ "standardMaxRecordCount": 4000,
+ "tileMaxRecordCount": 4000,
+ "standardMaxRecordCountNoGeometry": 32000,
+ "maxRecordCountFactor": 1,
+ "serviceItemId": "545f1770f224498888a6691fdeaed137"
+}

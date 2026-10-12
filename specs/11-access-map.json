@@ -1,0 +1,175 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 720,
+  "height": 580,
+  "projection": {
+    "type": "mercator",
+    "center": [
+      145.106,
+      -37.839
+    ],
+    "scale": 21000
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/clean/sa2_greater_melbourne.geojson?v=2",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "params": [
+        {
+          "name": "hoveredSA2",
+          "select": {
+            "type": "point",
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#ddd8cd",
+        "stroke": "#fffdf8",
+        "strokeWidth": 0.45
+      },
+      "encoding": {
+        "shape": {
+          "field": "geometry",
+          "type": "geojson"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/clean/sa2_greater_melbourne.geojson?v=2",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.access_rate_eligible === true"
+        },
+        {
+          "calculate": "datum.properties.supermarkets_per_10000",
+          "as": "access_rate"
+        },
+        {
+          "calculate": "datum.properties.sa2_name_2021",
+          "as": "sa2_name"
+        },
+        {
+          "calculate": "datum.properties.supermarket_count",
+          "as": "store_count"
+        },
+        {
+          "calculate": "datum.properties.erp_2025",
+          "as": "population"
+        },
+        {
+          "calculate": "datum.properties.median_equivalised_household_income_weekly_2021",
+          "as": "weekly_income"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#fffdf8",
+        "strokeWidth": 0.45
+      },
+      "encoding": {
+        "shape": {
+          "field": "geometry",
+          "type": "geojson"
+        },
+        "color": {
+          "field": "access_rate",
+          "type": "quantitative",
+          "title": "Supermarkets per 10,000",
+          "scale": {
+            "domain": [
+              0,
+              8
+            ],
+            "clamp": true,
+            "scheme": "yellowgreenblue"
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 220
+          }
+        },
+        "stroke": {
+          "condition": {
+            "param": "hoveredSA2",
+            "empty": false,
+            "value": "#17211b"
+          },
+          "value": "#fffdf8"
+        },
+        "strokeWidth": {
+          "condition": {
+            "param": "hoveredSA2",
+            "empty": false,
+            "value": 1.7
+          },
+          "value": 0.45
+        },
+        "tooltip": [
+          {
+            "field": "sa2_name",
+            "type": "nominal",
+            "title": "SA2"
+          },
+          {
+            "field": "access_rate",
+            "type": "quantitative",
+            "title": "Supermarkets per 10,000",
+            "format": ".2f"
+          },
+          {
+            "field": "store_count",
+            "type": "quantitative",
+            "title": "Supermarkets",
+            "format": ",.0f"
+          },
+          {
+            "field": "population",
+            "type": "quantitative",
+            "title": "2025 population",
+            "format": ",.0f"
+          },
+          {
+            "field": "weekly_income",
+            "type": "quantitative",
+            "title": "Weekly household income",
+            "format": "$,.0f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelColor": "#5e6c63",
+      "titleColor": "#17211b",
+      "domainColor": "#cfc7b8",
+      "gridColor": "#e8e2d6"
+    },
+    "legend": {
+      "labelColor": "#49574e",
+      "titleColor": "#17211b",
+      "titleFontWeight": 700,
+      "symbolStrokeWidth": 1
+    }
+  }
+}

@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Eleven Vega-Lite views exploring grocery price inflation, supermarket prices and local access in Australia."
+    />
+    <title>Grocery prices and supermarket access</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.5.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="nav-shell" aria-label="Page navigation">
+        <a class="brand" href="#top">Grocery prices</a>
+        <div class="nav-links">
+          <a href="#trend">Trend</a>
+          <a href="#composition">Price mix</a>
+          <a href="#categories">Categories</a>
+          <a href="#basket">Basket</a>
+          <a href="#stores">Stores</a>
+          <a href="#access">Access</a>
+        </div>
+      </nav>
+
+      <div class="hero-grid" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">FIT3179 · GROCERY PRICE STORY</p>
+          <h1>Food prices rise unevenly. Access varies locally.</h1>
+          <p class="lede">
+            Eleven linked views move from national price pressure to supermarket
+            competition and the local grocery landscape of Greater Melbourne.
+          </p>
+        </div>
+        <dl class="summary-grid" aria-label="Dataset summary">
+          <div>
+            <dt>11</dt>
+            <dd>linked visualisations</dd>
+          </div>
+          <div>
+            <dt>1,038</dt>
+            <dd>mapped supermarkets</dd>
+          </div>
+          <div>
+            <dt>361</dt>
+            <dd>Greater Melbourne SA2s</dd>
+          </div>
+        </dl>
+      </div>
+    </header>
+
+    <main>
+      <section class="story-section" id="trend">
+        <div class="section-copy">
+          <p class="section-number">01 · PRICE TREND</p>
+          <h2>Food inflation arrived in waves, not all at once</h2>
+          <p>
+            Select a broad food category to trace its annual price change since
+            September 2018. The same shock produced very different paths across
+            meat, dairy, produce, cereals and drinks.
+          </p>
+          <p class="method-note">
+            Interactive line chart · ABS CPI Table 10 · annual percentage change
+          </p>
+        </div>
+        <div class="chart-card compact-card">
+          <div id="trend-chart" class="chart" aria-label="Annual food price change over time by category"></div>
+          <p class="chart-status" id="trend-chart-status" role="status">Loading chart…</p>
+        </div>
+      </section>
+
+      <section class="story-section reverse" id="composition">
+        <div class="section-copy">
+          <p class="section-number">02 · CPI COMPOSITION</p>
+          <h2>Eating out carries the largest share of food's CPI contribution</h2>
+          <p>
+            Band thickness represents each broad category's contribution to the
+            all-groups CPI index. The centred baseline emphasises how the mix
+            changed, not an absolute zero.
+          </p>
+          <p class="method-note">
+            Stream graph · December 2024 to August 2026 · ABS CPI Table 10
+          </p>
+        </div>
+        <div class="chart-card compact-card">
+          <div id="stream-chart" class="chart" aria-label="Stream graph of food category contributions to the CPI"></div>
+          <p class="chart-status" id="stream-chart-status" role="status">Loading chart…</p>
+        </div>
+      </section>
+
+      <section class="story-section" id="categories">
+        <div class="section-copy">
+          <p class="section-number">03 · CATEGORY PRESSURE</p>
+          <h2>The pressure moved from one aisle to another</h2>
+          <p>
+            Monthly cells reveal when inflation accelerated, eased or turned
+            negative. By August 2026, beef, lamb and milk were rising fastest,
+            while egg prices were lower than a year earlier.
+          </p>
+          <p class="method-note">
+            Heatmap · September 2023 to August 2026 · hover for exact values
+          </p>
+        </div>
+        <div class="chart-card wide-card">
+          <div id="category-heatmap" class="chart" aria-label="Heatmap of annual price change by food category and month"></div>
+          <p class="chart-status" id="category-heatmap-status" role="status">Loading chart…</p>
+        </div>
+      </section>
+
+      <section class="story-section reverse" id="rankings">
+        <div class="section-copy">
+          <p class="section-number">04 · RANKING SHIFTS</p>
+          <h2>No aisle stayed the inflation leader</h2>
+          <p>
+            Each August, the six broad grocery groups are ranked by annual price
+            growth. The crossing lines show why a single headline rate cannot
+            describe every household's experience.
+          </p>
+          <p class="method-note">
+            Bump chart · rank 1 is the fastest price growth · ABS CPI Table 10
+          </p>
+        </div>
+        <div class="chart-card compact-card">
+          <div id="bump-chart" class="chart" aria-label="Annual rank of food category inflation each August"></div>
+          <p class="chart-status" id="bump-chart-status" role="status">Loading chart…</p>
+        </div>
+      </section>
+
+      <section class="story-section dashboard-section" id="detail">
+        <div class="section-copy">
+          <p class="section-number">05–06 · DETAIL AND VOLATILITY</p>
+          <h2>A high annual rate and an unpredictable month are different problems</h2>
+          <p>
+            The first view compares the latest annual changes. The second shows
+            the spread of month-to-month movements since September 2023, exposing
+            categories whose prices are harder to plan around.
+          </p>
+          <p class="method-note">
+            Lollipop chart and box plot · complementary views of level and volatility
+          </p>
+        </div>
+        <div class="chart-pair">
+          <div class="chart-card compact-card">
+            <h3>Latest annual change</h3>
+            <p class="chart-kicker">August 2026, selected everyday categories</p>
+            <div id="lollipop-chart" class="chart" aria-label="Latest annual price change by detailed food category"></div>
+            <p class="chart-status" id="lollipop-chart-status" role="status">Loading chart…</p>
+          </div>
+          <div class="chart-card compact-card">
+            <h3>Monthly volatility</h3>
+            <p class="chart-kicker">Distribution of monthly price changes, September 2023–August 2026</p>
+            <div id="volatility-chart" class="chart" aria-label="Distribution of monthly price changes by food category"></div>
+            <p class="chart-status" id="volatility-chart-status" role="status">Loading chart…</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="story-section reverse" id="inflation">
+        <div class="section-copy">
+          <p class="section-number">07 · CAPITAL CITIES</p>
+          <h2>Food inflation was positive in every capital</h2>
+          <p>
+            Circle size and colour encode the annual change in the Food and
+            non-alcoholic beverages CPI in August 2026. Hover over a city for its
+            exact value.
+          </p>
+          <p class="method-note">
+            Graduated-symbol map · ABS CPI Table 11 · annual percentage change
+          </p>
+        </div>
+        <div class="chart-card">
+          <div id="capital-map" class="chart" aria-label="Food inflation by Australian capital city"></div>
+          <p class="chart-status" id="capital-map-status" role="status">Loading map…</p>
+        </div>
+      </section>
+
+      <section class="story-section" id="basket">
+        <div class="section-copy">
+          <p class="section-number">08 · SUPERMARKET BASKET</p>
+          <h2>The lowest-priced chain was consistent; the gap was not</h2>
+          <p>
+            Each dot is the June 2026 price of the same 14-item grocery basket.
+            Aldi was lowest in every state where it operated, while the local
+            spread was widest in the Northern Territory.
+          </p>
+          <p class="method-note">
+            Range-and-dot plot · CHOICE quarterly basket survey · June 2026
+          </p>
+        </div>
+        <div class="chart-card compact-card">
+          <div id="basket-chart" class="chart" aria-label="Supermarket basket price by state and chain"></div>
+          <p class="chart-status" id="basket-chart-status" role="status">Loading chart…</p>
+          <p class="chart-footnote">Aldi had no surveyed price in Tasmania or the Northern Territory.</p>
+        </div>
+      </section>
+
+      <section class="story-section reverse" id="retailer-gap">
+        <div class="section-copy">
+          <p class="section-number">09 · RETAILER GAP</p>
+          <h2>The discount-to-IGA gap changed by more than ten dollars between states</h2>
+          <p>
+            Connecting the same two retailers makes the state effect visible.
+            Victoria's gap was about $17, while the ACT gap approached $28 for
+            the identical 14-item basket.
+          </p>
+          <p class="method-note">
+            Slope graph · Aldi versus IGA · states where both were surveyed
+          </p>
+        </div>
+        <div class="chart-card compact-card">
+          <div id="slope-chart" class="chart" aria-label="Aldi and IGA basket prices connected by state"></div>
+          <p class="chart-status" id="slope-chart-status" role="status">Loading chart…</p>
+        </div>
+      </section>
+
+      <section class="story-section" id="stores">
+        <div class="section-copy">
+          <p class="section-number">10 · STORE LOCATIONS</p>
+          <h2>Major chains overlap with a long tail of local stores</h2>
+          <p>
+            Each point is an OpenStreetMap feature tagged as a supermarket and
+            located inside an official Greater Melbourne SA2. Select a brand in
+            the legend to focus the map.
+          </p>
+          <p class="method-note">
+            Point map · 11 October 2026 OSM snapshot · click the legend to filter
+          </p>
+        </div>
+        <div class="chart-card wide-card">
+          <div id="store-map" class="chart" aria-label="Supermarket locations in Greater Melbourne"></div>
+          <p class="chart-status" id="store-map-status" role="status">Loading map…</p>
+        </div>
+      </section>
+
+      <section class="story-section reverse" id="access">
+        <div class="section-copy">
+          <p class="section-number">11 · LOCAL ACCESS</p>
+          <h2>Store counts mean something different after population is considered</h2>
+          <p>
+            This map divides each SA2 supermarket count by its 2025 estimated
+            resident population. Hover to compare access, population and weekly
+            equivalised household income.
+          </p>
+          <p class="method-note">
+            Choropleth · supermarkets per 10,000 residents · SA2s below 1,000
+            residents shown as unavailable
+          </p>
+        </div>
+        <div class="chart-card">
+          <div id="access-map" class="chart" aria-label="Supermarkets per 10,000 residents by SA2"></div>
+          <p class="chart-status" id="access-map-status" role="status">Loading map…</p>
+        </div>
+      </section>
+
+      <section class="notes-section" aria-labelledby="notes-title">
+        <div>
+          <p class="section-number">READING THE MAPS</p>
+          <h2 id="notes-title">What these prototypes establish</h2>
+        </div>
+        <div class="notes-grid">
+          <p>
+            Eleven views use eleven distinct idioms: line, stream, heatmap, bump,
+            lollipop, box plot, graduated symbols, range-and-dot, slope, point
+            map and choropleth. Each answers a different question.
+          </p>
+          <p>
+            OpenStreetMap is community maintained. Store locations and brand tags
+            may be incomplete or outdated, so the access map should be described
+            as an indicative view rather than an official store census.
+          </p>
+        </div>
+      </section>
+
+      <section class="metadata-section" aria-labelledby="metadata-title">
+        <div>
+          <p class="section-number">PROJECT CONTEXT</p>
+          <h2 id="metadata-title">Why this story, and who it is for</h2>
+        </div>
+        <div class="metadata-grid">
+          <article>
+            <h3>Why + who</h3>
+            <p>
+              Grocery prices affect every household, but headline inflation can
+              hide differences between foods, retailers and neighbourhoods. This
+              story is designed for Australian shoppers without specialist
+              statistical knowledge.
+            </p>
+          </article>
+          <article>
+            <h3>What + how</h3>
+            <p>
+              ABS price, population and income data are combined with CHOICE
+              basket prices and OpenStreetMap locations. Each idiom matches a
+              task: compare, rank, trace change, locate stores or normalise access.
+            </p>
+          </article>
+          <article>
+            <h3>Metadata</h3>
+            <p>
+              Price data through August 2026; basket survey June 2026; OSM
+              snapshot 11 October 2026; population estimate 2025; income 2021.
+              Created 11 October 2026.
+            </p>
+          </article>
+          <article>
+            <h3>AI acknowledgement</h3>
+            <p>
+              OpenAI Codex assisted with data preparation, copy editing and
+              implementation. All analytical and design decisions should be
+              reviewed by the author before submission.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <p>
+          Sources:
+          <a href="https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/monthly-consumer-price-index-indicator/latest-release">ABS Consumer Price Index</a>,
+          ABS regional population and income,
+          <a href="https://www.choice.com.au/shopping/everyday-shopping/supermarkets/articles/choice-supermarket-basket-survey">CHOICE supermarket basket survey</a>, and
+          <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.
+        </p>
+        <p class="author-line">Author: <span>Jin XIE</span> · FIT3179 Data Visualisation 2 · 2026</p>
+      </div>
+    </footer>
+
+    <script src="js/maps.js?v=14"></script>
+  </body>
+</html>

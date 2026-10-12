@@ -1,0 +1,182 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 720,
+  "height": 400,
+  "data": {
+    "url": "data/clean/choice_state_basket_jun2026.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.available === true || datum.available === 'True'"
+    },
+    {
+      "calculate": "toNumber(datum.basket_price_aud)",
+      "as": "basket_price"
+    }
+  ],
+  "layer": [
+    {
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "min",
+              "field": "basket_price",
+              "as": "lowest_price"
+            },
+            {
+              "op": "max",
+              "field": "basket_price",
+              "as": "highest_price"
+            }
+          ],
+          "groupby": [
+            "state"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#c7c0b2",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "title": "State or territory",
+          "sort": [
+            "ACT",
+            "NSW",
+            "NT",
+            "QLD",
+            "SA",
+            "TAS",
+            "VIC",
+            "WA"
+          ]
+        },
+        "x": {
+          "field": "lowest_price",
+          "type": "quantitative",
+          "title": "14-item basket price (AUD)",
+          "scale": {
+            "domain": [
+              65,
+              112
+            ],
+            "nice": false
+          },
+          "axis": {
+            "format": "$,.0f"
+          }
+        },
+        "x2": {
+          "field": "highest_price"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 150,
+        "opacity": 0.95,
+        "stroke": "#fffdf8",
+        "strokeWidth": 1.4
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "title": "State or territory",
+          "sort": [
+            "ACT",
+            "NSW",
+            "NT",
+            "QLD",
+            "SA",
+            "TAS",
+            "VIC",
+            "WA"
+          ]
+        },
+        "x": {
+          "field": "basket_price",
+          "type": "quantitative",
+          "title": "14-item basket price (AUD)",
+          "scale": {
+            "domain": [
+              65,
+              112
+            ],
+            "nice": false
+          },
+          "axis": {
+            "format": "$,.0f"
+          }
+        },
+        "color": {
+          "field": "supermarket",
+          "type": "nominal",
+          "title": "Supermarket",
+          "scale": {
+            "domain": [
+              "Aldi",
+              "Woolworths",
+              "Coles",
+              "IGA"
+            ],
+            "range": [
+              "#1b5ca8",
+              "#2f7d49",
+              "#d64045",
+              "#e4a525"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 4
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "supermarket",
+            "type": "nominal",
+            "title": "Supermarket"
+          },
+          {
+            "field": "basket_price",
+            "type": "quantitative",
+            "title": "Basket price",
+            "format": "$,.2f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelColor": "#5e6c63",
+      "titleColor": "#17211b",
+      "domainColor": "#cfc7b8",
+      "gridColor": "#e8e2d6"
+    },
+    "legend": {
+      "labelColor": "#49574e",
+      "titleColor": "#17211b",
+      "titleFontWeight": 700,
+      "symbolStrokeWidth": 1
+    }
+  }
+}

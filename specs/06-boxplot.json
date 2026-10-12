@@ -1,0 +1,73 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 720,
+  "height": 410,
+  "data": {
+    "url": "data/clean/abs_food_australia_monthly.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.measure === 'monthly_percent_change' && toDate(datum.date) >= toDate('2023-09-01') && indexof([\"Bread\",\"Beef and veal\",\"Poultry\",\"Milk\",\"Eggs\",\"Fruit\",\"Vegetables\",\"Coffee, tea and cocoa\"], datum.category) >= 0"
+    },
+    {
+      "calculate": "toNumber(datum.value)",
+      "as": "monthly_change"
+    }
+  ],
+  "mark": {
+    "type": "boxplot",
+    "extent": "min-max",
+    "size": 28,
+    "median": {
+      "color": "#fffdf8"
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "category",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Bread",
+        "Beef and veal",
+        "Poultry",
+        "Milk",
+        "Eggs",
+        "Fruit",
+        "Vegetables",
+        "Coffee, tea and cocoa"
+      ],
+      "axis": {
+        "labelAngle": -35,
+        "labelLimit": 120
+      }
+    },
+    "y": {
+      "field": "monthly_change",
+      "type": "quantitative",
+      "title": "Monthly price change (%)"
+    },
+    "color": {
+      "value": "#226b4f"
+    }
+  },
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelColor": "#5e6c63",
+      "titleColor": "#17211b",
+      "domainColor": "#cfc7b8",
+      "gridColor": "#e8e2d6"
+    },
+    "legend": {
+      "labelColor": "#49574e",
+      "titleColor": "#17211b",
+      "titleFontWeight": 700,
+      "symbolStrokeWidth": 1
+    }
+  }
+}

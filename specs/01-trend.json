@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 720,
+  "height": 410,
+  "data": {
+    "url": "data/clean/abs_food_australia_monthly.csv"
+  },
+  "params": [
+    {
+      "name": "categoryChoice",
+      "value": "Meat and seafoods",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Bread and cereal products",
+          "Meat and seafoods",
+          "Dairy and related products",
+          "Fruit and vegetables",
+          "Food products n.e.c.",
+          "Non-alcoholic beverages"
+        ],
+        "labels": [
+          "Bread & cereals",
+          "Meat & seafood",
+          "Dairy",
+          "Fruit & vegetables",
+          "Other food",
+          "Non-alcoholic drinks"
+        ],
+        "name": "Food category "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.measure === 'annual_percent_change'"
+    },
+    {
+      "filter": "datum.category === categoryChoice"
+    },
+    {
+      "calculate": "toNumber(datum.value)",
+      "as": "annual_change"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "point": {
+      "filled": true,
+      "fill": "#fffdf8",
+      "size": 34
+    },
+    "color": "#226b4f",
+    "strokeWidth": 2.6
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "Month",
+      "axis": {
+        "format": "%Y",
+        "tickCount": "year",
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "annual_change",
+      "type": "quantitative",
+      "title": "Annual price change (%)",
+      "scale": {
+        "zero": true
+      }
+    },
+    "tooltip": [
+      {
+        "field": "category",
+        "type": "nominal",
+        "title": "Category"
+      },
+      {
+        "field": "date",
+        "type": "temporal",
+        "title": "Month",
+        "format": "%B %Y"
+      },
+      {
+        "field": "annual_change",
+        "type": "quantitative",
+        "title": "Annual change",
+        "format": ".1f"
+      }
+    ]
+  },
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelColor": "#5e6c63",
+      "titleColor": "#17211b",
+      "domainColor": "#cfc7b8",
+      "gridColor": "#e8e2d6"
+    },
+    "legend": {
+      "labelColor": "#49574e",
+      "titleColor": "#17211b",
+      "titleFontWeight": 700,
+      "symbolStrokeWidth": 1
+    }
+  }
+}

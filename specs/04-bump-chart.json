@@ -1,0 +1,127 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 720,
+  "height": 410,
+  "data": {
+    "url": "data/clean/abs_food_australia_monthly.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.measure === 'annual_percent_change' && month(toDate(datum.date)) === 7 && toDate(datum.date) >= toDate('2019-08-01') && indexof([\"Bread and cereal products\",\"Meat and seafoods\",\"Dairy and related products\",\"Fruit and vegetables\",\"Food products n.e.c.\",\"Non-alcoholic beverages\"], datum.category) >= 0"
+    },
+    {
+      "calculate": "toNumber(datum.value)",
+      "as": "annual_change"
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "inflation_rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "annual_change",
+          "order": "descending"
+        }
+      ],
+      "groupby": [
+        "date"
+      ]
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "point": {
+      "filled": true,
+      "size": 75
+    },
+    "strokeWidth": 2.5
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "August each year",
+      "axis": {
+        "format": "%Y",
+        "tickCount": "year",
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "inflation_rank",
+      "type": "ordinal",
+      "title": "Inflation rank",
+      "sort": "ascending",
+      "axis": {
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "labelExpr": "'Rank ' + datum.value"
+      }
+    },
+    "color": {
+      "field": "category",
+      "type": "nominal",
+      "title": "Food category",
+      "scale": {
+        "scheme": "tableau10"
+      },
+      "legend": {
+        "orient": "bottom",
+        "columns": 2,
+        "labelLimit": 220
+      }
+    },
+    "tooltip": [
+      {
+        "field": "date",
+        "type": "temporal",
+        "title": "Period",
+        "format": "August %Y"
+      },
+      {
+        "field": "category",
+        "type": "nominal",
+        "title": "Category"
+      },
+      {
+        "field": "inflation_rank",
+        "type": "ordinal",
+        "title": "Rank"
+      },
+      {
+        "field": "annual_change",
+        "type": "quantitative",
+        "title": "Annual change",
+        "format": ".1f"
+      }
+    ]
+  },
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelColor": "#5e6c63",
+      "titleColor": "#17211b",
+      "domainColor": "#cfc7b8",
+      "gridColor": "#e8e2d6"
+    },
+    "legend": {
+      "labelColor": "#49574e",
+      "titleColor": "#17211b",
+      "titleFontWeight": 700,
+      "symbolStrokeWidth": 1
+    }
+  }
+}

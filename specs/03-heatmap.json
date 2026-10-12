@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 720,
+  "height": 470,
+  "data": {
+    "url": "data/clean/abs_food_australia_monthly.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.measure === 'annual_percent_change' && toDate(datum.date) >= toDate('2023-09-01') && indexof([\"Bread\",\"Beef and veal\",\"Lamb and goat\",\"Poultry\",\"Fish and other seafood\",\"Milk\",\"Cheese\",\"Eggs\",\"Fruit\",\"Vegetables\",\"Coffee, tea and cocoa\"], datum.category) >= 0"
+    },
+    {
+      "calculate": "toNumber(datum.value)",
+      "as": "annual_change"
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "stroke": "#fffdf8",
+    "strokeWidth": 0.6
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "timeUnit": "yearmonth",
+      "title": "Month",
+      "axis": {
+        "format": "%b %Y",
+        "labelAngle": -45,
+        "tickCount": 8
+      }
+    },
+    "y": {
+      "field": "category",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Bread",
+        "Beef and veal",
+        "Lamb and goat",
+        "Poultry",
+        "Fish and other seafood",
+        "Milk",
+        "Cheese",
+        "Eggs",
+        "Fruit",
+        "Vegetables",
+        "Coffee, tea and cocoa"
+      ],
+      "axis": {
+        "labelLimit": 170
+      }
+    },
+    "color": {
+      "field": "annual_change",
+      "type": "quantitative",
+      "title": "Annual change (%)",
+      "scale": {
+        "domain": [
+          -5,
+          15
+        ],
+        "domainMid": 0,
+        "clamp": true,
+        "scheme": "redblue",
+        "reverse": true
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "gradientLength": 260
+      }
+    },
+    "tooltip": [
+      {
+        "field": "category",
+        "type": "nominal",
+        "title": "Category"
+      },
+      {
+        "field": "date",
+        "type": "temporal",
+        "title": "Month",
+        "format": "%B %Y"
+      },
+      {
+        "field": "annual_change",
+        "type": "quantitative",
+        "title": "Annual change",
+        "format": ".1f"
+      }
+    ]
+  },
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelColor": "#5e6c63",
+      "titleColor": "#17211b",
+      "domainColor": "#cfc7b8",
+      "gridColor": "#e8e2d6"
+    },
+    "legend": {
+      "labelColor": "#49574e",
+      "titleColor": "#17211b",
+      "titleFontWeight": 700,
+      "symbolStrokeWidth": 1
+    }
+  }
+}
