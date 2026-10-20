@@ -12,12 +12,28 @@
     {
       "calculate": "toNumber(datum.value)",
       "as": "contribution"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "contribution",
+          "as": "food_contribution_total"
+        }
+      ],
+      "groupby": [
+        "date"
+      ]
+    },
+    {
+      "calculate": "datum.contribution / datum.food_contribution_total",
+      "as": "share"
     }
   ],
   "mark": {
     "type": "area",
     "interpolate": "monotone",
-    "opacity": 0.9
+    "opacity": 0.92
   },
   "encoding": {
     "x": {
@@ -31,15 +47,19 @@
       }
     },
     "y": {
-      "field": "contribution",
+      "field": "share",
       "type": "quantitative",
-      "title": "CPI contribution (index points)",
-      "stack": "center",
+      "title": "Share of food CPI contribution",
+      "stack": "zero",
+      "scale": {
+        "domain": [
+          0,
+          1
+        ]
+      },
       "axis": {
-        "labels": false,
-        "ticks": false,
-        "domain": false,
-        "title": null
+        "format": ".0%",
+        "tickCount": 6
       }
     },
     "color": {
@@ -72,9 +92,15 @@
         "title": "Category"
       },
       {
+        "field": "share",
+        "type": "quantitative",
+        "title": "Share of food contribution",
+        "format": ".1%"
+      },
+      {
         "field": "contribution",
         "type": "quantitative",
-        "title": "Contribution",
+        "title": "Contribution (index points)",
         "format": ".2f"
       }
     ]

@@ -3,7 +3,7 @@
 Each visualisation used on the public page has a separate, human-readable Vega-Lite JSON specification in this directory.
 
 1. [`01-trend.json`](01-trend.json) - selectable national food-price trend line.
-2. [`02-streamgraph.json`](02-streamgraph.json) - food-category CPI contribution stream graph.
+2. [`02-stacked-area.json`](02-stacked-area.json) - food-category shares of CPI contribution in a 100% stacked area chart.
 3. [`03-heatmap.json`](03-heatmap.json) - detailed category inflation heatmap.
 4. [`04-bump-chart.json`](04-bump-chart.json) - annual inflation ranking changes.
 5. [`05-lollipop.json`](05-lollipop.json) - latest detailed category changes.

@@ -3,7 +3,7 @@
 This folder contains eleven linked Vega-Lite visualisations for the FIT3179 Data Visualisation 2 project:
 
 1. Selectable line chart of annual food price change since September 2018.
-2. Stream graph of broad food-category contributions to the CPI.
+2. 100% stacked area chart of broad food-category shares of CPI contribution.
 3. Heatmap of monthly inflation across 11 everyday food categories.
 4. Bump chart ranking broad categories by annual inflation each August.
 5. Lollipop chart of the latest annual change for detailed categories.
