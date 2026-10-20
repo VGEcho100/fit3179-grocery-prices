@@ -7,7 +7,7 @@ Each visualisation used on the public page has a separate, human-readable Vega-L
 3. [`03-heatmap.json`](03-heatmap.json) - detailed category inflation heatmap.
 4. [`04-bump-chart.json`](04-bump-chart.json) - annual inflation ranking changes.
 5. [`05-lollipop.json`](05-lollipop.json) - latest detailed category changes.
-6. [`06-boxplot.json`](06-boxplot.json) - monthly price-change distributions.
+6. [`06-monthly-movement.json`](06-monthly-movement.json) - average absolute monthly price movement by category.
 7. [`07-capital-map.json`](07-capital-map.json) - capital-city food inflation map.
 8. [`08-basket-comparison.json`](08-basket-comparison.json) - state supermarket basket ranges.
 9. [`09-slope-chart.json`](09-slope-chart.json) - Aldi and IGA basket comparison.

@@ -232,8 +232,7 @@ h2 {
   gap: 2rem;
 }
 
-.chart-card h3,
-.metadata-grid h3 {
+.chart-card h3 {
   margin-bottom: 0.35rem;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.45rem;
@@ -297,31 +296,6 @@ h2 {
   padding: 7rem 0;
 }
 
-.metadata-section {
-  display: grid;
-  grid-template-columns: 0.32fr 0.68fr;
-  gap: 5rem;
-  padding: 7rem 0;
-  border-top: 1px solid var(--line);
-}
-
-.metadata-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2rem;
-}
-
-.metadata-grid article {
-  padding-top: 1rem;
-  border-top: 2px solid var(--leaf);
-}
-
-.metadata-grid p {
-  margin-bottom: 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
 .notes-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -368,7 +342,6 @@ footer a {
   .story-section,
   .story-section.reverse,
   .dashboard-section,
-  .metadata-section,
   .notes-section {
     grid-template-columns: 1fr;
   }
@@ -419,8 +392,7 @@ footer a {
   }
 
   .summary-grid,
-  .notes-grid,
-  .metadata-grid {
+  .notes-grid {
     grid-template-columns: 1fr;
   }
 

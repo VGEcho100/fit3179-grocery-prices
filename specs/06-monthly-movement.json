@@ -1,0 +1,115 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 720,
+  "height": 410,
+  "data": {
+    "url": "data/clean/abs_food_australia_monthly.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.measure === 'monthly_percent_change' && toDate(datum.date) >= toDate('2023-09-01') && indexof([\"Bread\",\"Beef and veal\",\"Poultry\",\"Milk\",\"Eggs\",\"Fruit\",\"Vegetables\",\"Coffee, tea and cocoa\"], datum.category) >= 0"
+    },
+    {
+      "calculate": "abs(toNumber(datum.value))",
+      "as": "absolute_monthly_change"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "mean",
+          "field": "absolute_monthly_change",
+          "as": "average_monthly_movement"
+        }
+      ],
+      "groupby": [
+        "category"
+      ]
+    },
+    {
+      "calculate": "format(datum.average_monthly_movement, '.2f') + '%'",
+      "as": "movement_label"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "category",
+      "type": "nominal",
+      "title": null,
+      "sort": "-x",
+      "axis": {
+        "labelLimit": 170
+      }
+    },
+    "x": {
+      "field": "average_monthly_movement",
+      "type": "quantitative",
+      "title": "Average month-to-month price movement (%)",
+      "scale": {
+        "domain": [
+          0,
+          3
+        ]
+      },
+      "axis": {
+        "format": ".1f"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "category",
+        "type": "nominal",
+        "title": "Food"
+      },
+      {
+        "field": "average_monthly_movement",
+        "type": "quantitative",
+        "title": "Typical monthly movement",
+        "format": ".2f"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#226b4f",
+        "cornerRadiusEnd": 4
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 7,
+        "color": "#17211b",
+        "fontWeight": 700
+      },
+      "encoding": {
+        "text": {
+          "field": "movement_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial",
+    "axis": {
+      "labelColor": "#5e6c63",
+      "titleColor": "#17211b",
+      "domainColor": "#cfc7b8",
+      "gridColor": "#e8e2d6"
+    },
+    "legend": {
+      "labelColor": "#49574e",
+      "titleColor": "#17211b",
+      "titleFontWeight": 700,
+      "symbolStrokeWidth": 1
+    }
+  }
+}

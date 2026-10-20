@@ -133,15 +133,15 @@
 
       <section class="story-section dashboard-section" id="detail">
         <div class="section-copy">
-          <p class="section-number">05–06 · DETAIL AND VOLATILITY</p>
-          <h2>A high annual rate and an unpredictable month are different problems</h2>
+          <p class="section-number">05–06 · DETAIL AND MONTHLY MOVEMENT</p>
+          <h2>Some prices rise steadily; others jump around</h2>
           <p>
-            The first view compares the latest annual changes. The second shows
-            the spread of month-to-month movements since September 2023, exposing
-            categories whose prices are harder to plan around.
+            The first view compares the latest annual changes. The second ranks
+            foods by their typical month-to-month movement since September 2023.
+            Longer bars mean prices have been less predictable.
           </p>
           <p class="method-note">
-            Lollipop chart and box plot · complementary views of level and volatility
+            Lollipop and horizontal bar charts · latest annual change and typical monthly movement
           </p>
         </div>
         <div class="chart-pair">
@@ -152,9 +152,9 @@
             <p class="chart-status" id="lollipop-chart-status" role="status">Loading chart…</p>
           </div>
           <div class="chart-card compact-card">
-            <h3>Monthly volatility</h3>
-            <p class="chart-kicker">Distribution of monthly price changes, September 2023–August 2026</p>
-            <div id="volatility-chart" class="chart" aria-label="Distribution of monthly price changes by food category"></div>
+            <h3>Typical monthly movement</h3>
+            <p class="chart-kicker">Average size of a monthly price change, September 2023–August 2026</p>
+            <div id="volatility-chart" class="chart" aria-label="Average absolute month-to-month price movement by food category"></div>
             <p class="chart-status" id="volatility-chart-status" role="status">Loading chart…</p>
           </div>
         </div>
@@ -265,7 +265,7 @@
         <div class="notes-grid">
           <p>
             Eleven views use eleven distinct idioms: line, stream, heatmap, bump,
-            lollipop, box plot, graduated symbols, range-and-dot, slope, point
+            lollipop, horizontal bar, graduated symbols, range-and-dot, slope, point
             map and choropleth. Each answers a different question.
           </p>
           <p>
@@ -276,47 +276,6 @@
         </div>
       </section>
 
-      <section class="metadata-section" aria-labelledby="metadata-title">
-        <div>
-          <p class="section-number">PROJECT CONTEXT</p>
-          <h2 id="metadata-title">Why this story, and who it is for</h2>
-        </div>
-        <div class="metadata-grid">
-          <article>
-            <h3>Why + who</h3>
-            <p>
-              Grocery prices affect every household, but headline inflation can
-              hide differences between foods, retailers and neighbourhoods. This
-              story is designed for Australian shoppers without specialist
-              statistical knowledge.
-            </p>
-          </article>
-          <article>
-            <h3>What + how</h3>
-            <p>
-              ABS price, population and income data are combined with CHOICE
-              basket prices and OpenStreetMap locations. Each idiom matches a
-              task: compare, rank, trace change, locate stores or normalise access.
-            </p>
-          </article>
-          <article>
-            <h3>Metadata</h3>
-            <p>
-              Price data through August 2026; basket survey June 2026; OSM
-              snapshot 11 October 2026; population estimate 2025; income 2021.
-              Created 11 October 2026.
-            </p>
-          </article>
-          <article>
-            <h3>AI acknowledgement</h3>
-            <p>
-              OpenAI Codex assisted with data preparation, copy editing and
-              implementation. All analytical and design decisions should be
-              reviewed by the author before submission.
-            </p>
-          </article>
-        </div>
-      </section>
     </main>
 
     <footer>
@@ -332,6 +291,6 @@
       </div>
     </footer>
 
-    <script src="js/maps.js?v=14"></script>
+    <script src="js/maps.js?v=15"></script>
   </body>
 </html>

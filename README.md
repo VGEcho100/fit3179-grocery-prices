@@ -7,7 +7,7 @@ This folder contains eleven linked Vega-Lite visualisations for the FIT3179 Data
 3. Heatmap of monthly inflation across 11 everyday food categories.
 4. Bump chart ranking broad categories by annual inflation each August.
 5. Lollipop chart of the latest annual change for detailed categories.
-6. Box plot of monthly price volatility since September 2023.
+6. Ranked horizontal bars showing the average size of monthly price changes since September 2023.
 7. Graduated-symbol map of annual food inflation across eight capital cities.
 8. Range-and-dot comparison of supermarket basket prices by state.
 9. Slope graph comparing Aldi and IGA basket prices by state.

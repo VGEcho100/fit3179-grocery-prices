@@ -4,7 +4,7 @@ const visualisations = [
   ["#category-heatmap", "#category-heatmap-status", "specs/03-heatmap.json"],
   ["#bump-chart", "#bump-chart-status", "specs/04-bump-chart.json"],
   ["#lollipop-chart", "#lollipop-chart-status", "specs/05-lollipop.json"],
-  ["#volatility-chart", "#volatility-chart-status", "specs/06-boxplot.json"],
+  ["#volatility-chart", "#volatility-chart-status", "specs/06-monthly-movement.json"],
   ["#capital-map", "#capital-map-status", "specs/07-capital-map.json"],
   ["#basket-chart", "#basket-chart-status", "specs/08-basket-comparison.json"],
   ["#slope-chart", "#slope-chart-status", "specs/09-slope-chart.json"],
