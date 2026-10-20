@@ -14,6 +14,10 @@
       "as": "annual_change"
     },
     {
+      "calculate": "year(toDate(datum.date))",
+      "as": "year"
+    },
+    {
       "window": [
         {
           "op": "rank",
@@ -29,31 +33,48 @@
       "groupby": [
         "date"
       ]
+    },
+    {
+      "calculate": "datum.category === 'Bread and cereal products' ? 'Bread & cereals' : datum.category === 'Meat and seafoods' ? 'Meat & seafood' : datum.category === 'Dairy and related products' ? 'Dairy' : datum.category === 'Fruit and vegetables' ? 'Fruit & vegetables' : datum.category === 'Food products n.e.c.' ? 'Other food' : 'Non-alcoholic drinks'",
+      "as": "short_category"
+    },
+    {
+      "calculate": "datum.inflation_rank + '  ' + datum.short_category",
+      "as": "end_label"
     }
   ],
-  "mark": {
-    "type": "line",
-    "point": {
-      "filled": true,
-      "size": 75
-    },
-    "strokeWidth": 2.5
-  },
   "encoding": {
     "x": {
-      "field": "date",
-      "type": "temporal",
+      "field": "year",
+      "type": "quantitative",
       "title": "August each year",
+      "scale": {
+        "domain": [
+          2019,
+          2027.9
+        ],
+        "nice": false
+      },
       "axis": {
-        "format": "%Y",
-        "tickCount": "year",
-        "labelAngle": 0
+        "values": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "format": "d",
+        "labelAngle": 0,
+        "grid": false
       }
     },
     "y": {
       "field": "inflation_rank",
       "type": "ordinal",
-      "title": "Inflation rank",
+      "title": "Position by annual price growth",
       "sort": "ascending",
       "axis": {
         "values": [
@@ -64,21 +85,38 @@
           5,
           6
         ],
-        "labelExpr": "'Rank ' + datum.value"
+        "labelExpr": "datum.value === 1 ? '1  HIGHEST' : datum.value === 6 ? '6  LOWEST' : '' + datum.value",
+        "labelFontWeight": 700,
+        "labelPadding": 10,
+        "ticks": false,
+        "domain": false,
+        "grid": true,
+        "gridColor": "#e8e2d6",
+        "gridOpacity": 1
       }
     },
     "color": {
       "field": "category",
       "type": "nominal",
-      "title": "Food category",
       "scale": {
-        "scheme": "tableau10"
+        "domain": [
+          "Bread and cereal products",
+          "Dairy and related products",
+          "Food products n.e.c.",
+          "Fruit and vegetables",
+          "Meat and seafoods",
+          "Non-alcoholic beverages"
+        ],
+        "range": [
+          "#4c78a8",
+          "#f58518",
+          "#e45756",
+          "#72b7b2",
+          "#4c9f4a",
+          "#eabf26"
+        ]
       },
-      "legend": {
-        "orient": "bottom",
-        "columns": 2,
-        "labelLimit": 220
-      }
+      "legend": null
     },
     "tooltip": [
       {
@@ -90,21 +128,75 @@
       {
         "field": "category",
         "type": "nominal",
-        "title": "Category"
+        "title": "Food category"
       },
       {
         "field": "inflation_rank",
         "type": "ordinal",
-        "title": "Rank"
+        "title": "Position"
       },
       {
         "field": "annual_change",
         "type": "quantitative",
-        "title": "Annual change",
+        "title": "Annual price change",
         "format": ".1f"
       }
     ]
   },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "opacity": 0.72
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 280,
+        "stroke": "#fffdf8",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#fffdf8"
+      },
+      "encoding": {
+        "text": {
+          "field": "inflation_rank",
+          "type": "ordinal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year === 2026"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 16,
+        "font": "Arial",
+        "fontSize": 12,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "text": {
+          "field": "end_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
   "config": {
     "background": null,
     "view": {
@@ -116,12 +208,6 @@
       "titleColor": "#17211b",
       "domainColor": "#cfc7b8",
       "gridColor": "#e8e2d6"
-    },
-    "legend": {
-      "labelColor": "#49574e",
-      "titleColor": "#17211b",
-      "titleFontWeight": 700,
-      "symbolStrokeWidth": 1
     }
   }
 }
