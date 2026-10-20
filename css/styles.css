@@ -300,15 +300,6 @@ footer a {
   color: #fffdf7;
 }
 
-.author-line {
-  flex: 0 0 auto;
-  text-align: right;
-}
-
-.author-line span {
-  color: #f4c66b;
-}
-
 @media (max-width: 900px) {
   .story-section,
   .story-section.reverse,
@@ -347,9 +338,6 @@ footer a {
     display: grid;
   }
 
-  .author-line {
-    text-align: left;
-  }
 }
 
 @media (max-width: 620px) {
