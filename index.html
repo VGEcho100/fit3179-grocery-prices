@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Eleven Vega-Lite views exploring grocery price inflation, supermarket prices and local access in Australia."
+      content="An interactive look at Australian grocery price changes, supermarket basket prices and local access in Greater Melbourne."
     />
     <title>Grocery prices and supermarket access</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css?v=18" />
     <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.5.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
@@ -30,11 +30,11 @@
 
       <div class="hero-grid" id="top">
         <div class="hero-copy">
-          <p class="eyebrow">FIT3179 · GROCERY PRICE STORY</p>
-          <h1>Food prices rise unevenly. Access varies locally.</h1>
+          <p class="eyebrow">FIT3179 DATA VISUALISATION 2</p>
+          <h1>Grocery prices and supermarket access</h1>
           <p class="lede">
-            Eleven linked views move from national price pressure to supermarket
-            competition and the local grocery landscape of Greater Melbourne.
+            This project looks at how food prices changed across Australia and how
+            supermarket access differs across Greater Melbourne.
           </p>
         </div>
       </div>
@@ -43,15 +43,15 @@
     <main>
       <section class="story-section" id="trend">
         <div class="section-copy">
-          <p class="section-number">01 · PRICE TREND</p>
-          <h2>Food inflation arrived in waves, not all at once</h2>
+          <p class="section-number">1. PRICE TREND</p>
+          <h2>How food prices changed since 2018</h2>
           <p>
-            Select a broad food category to trace its annual price change since
-            September 2018. The same shock produced very different paths across
-            meat, dairy, produce, cereals and drinks.
+            Choose a food group from the menu to follow its annual price change.
+            Categories peaked at different times, so the overall food inflation
+            figure does not tell the whole story.
           </p>
           <p class="method-note">
-            Interactive line chart · ABS CPI Table 10 · annual percentage change
+            ABS CPI Table 10 · annual percentage change
           </p>
         </div>
         <div class="chart-card compact-card">
@@ -62,12 +62,12 @@
 
       <section class="story-section reverse" id="composition">
         <div class="section-copy">
-          <p class="section-number">02 · CPI COMPOSITION</p>
-          <h2>Eating out accounts for about 41% of food's CPI contribution</h2>
+          <p class="section-number">2. CPI COMPOSITION</p>
+          <h2>What makes up food CPI?</h2>
           <p>
-            Each coloured band shows a category's percentage share of food's
-            contribution to the all-groups CPI index. Every month adds to 100%,
-            making the composition and its changes easier to compare.
+            Each band shows a food group's share of food's contribution to the
+            all-groups CPI. The bands add to 100%. Meals out and takeaway foods
+            accounted for about 41% in August 2026.
           </p>
           <p class="method-note">
             100% stacked area chart · December 2024 to August 2026 · ABS CPI Table 3
@@ -81,12 +81,12 @@
 
       <section class="story-section" id="categories">
         <div class="section-copy">
-          <p class="section-number">03 · CATEGORY PRESSURE</p>
-          <h2>The pressure moved from one aisle to another</h2>
+          <p class="section-number">3. FOOD CATEGORIES</p>
+          <h2>Price growth by category</h2>
           <p>
-            Monthly cells reveal when inflation accelerated, eased or turned
-            negative. By August 2026, beef, lamb and milk were rising fastest,
-            while egg prices were lower than a year earlier.
+            Each cell shows the annual price change for one category in one month.
+            Red indicates an increase and blue a fall. Hover over a cell to see
+            the exact value.
           </p>
           <p class="method-note">
             Heatmap · September 2023 to August 2026 · hover for exact values
@@ -100,12 +100,12 @@
 
       <section class="story-section reverse" id="rankings">
         <div class="section-copy">
-          <p class="section-number">04 · CHANGING LEADERS</p>
-          <h2>The fastest-rising food group changed every year</h2>
+          <p class="section-number">4. ANNUAL RANKING</p>
+          <h2>Which food group ranked highest?</h2>
           <p>
-            Each numbered circle shows a category's position that August: 1 had
-            the fastest annual price growth and 6 the slowest. Labels at the right
-            show the latest order without requiring a separate legend.
+            The chart ranks six broad food groups each August. Position 1 had the
+            fastest annual price growth and position 6 the slowest. The group in
+            first place changed each year.
           </p>
           <p class="method-note">
             Bump chart · 1 = fastest annual price growth · ABS CPI Table 10
@@ -119,12 +119,12 @@
 
       <section class="story-section dashboard-section" id="detail">
         <div class="section-copy">
-          <p class="section-number">05–06 · DETAIL AND MONTHLY MOVEMENT</p>
-          <h2>Some prices rise steadily; others jump around</h2>
+          <p class="section-number">5–6. RECENT PRICE MOVEMENT</p>
+          <h2>Recent changes and monthly variation</h2>
           <p>
-            The first view compares the latest annual changes. The second ranks
-            foods by their typical month-to-month movement since September 2023.
-            Longer bars mean prices have been less predictable.
+            The first chart compares annual price changes in August 2026. The
+            second shows the average size of each category's monthly change since
+            September 2023. Longer bars indicate greater month-to-month variation.
           </p>
           <p class="method-note">
             Lollipop and horizontal bar charts · latest annual change and typical monthly movement
@@ -148,12 +148,12 @@
 
       <section class="story-section reverse" id="inflation">
         <div class="section-copy">
-          <p class="section-number">07 · CAPITAL CITIES</p>
-          <h2>Food inflation was positive in every capital</h2>
+          <p class="section-number">7. CAPITAL CITIES</p>
+          <h2>Food inflation by capital city</h2>
           <p>
-            Circle size and colour encode the annual change in the Food and
-            non-alcoholic beverages CPI in August 2026. Hover over a city for its
-            exact value.
+            Larger, darker circles indicate a higher annual change in the Food and
+            non-alcoholic beverages CPI. All capital cities recorded an increase
+            in August 2026.
           </p>
           <p class="method-note">
             Graduated-symbol map · ABS CPI Table 11 · annual percentage change
@@ -167,12 +167,12 @@
 
       <section class="story-section" id="basket">
         <div class="section-copy">
-          <p class="section-number">08 · SUPERMARKET BASKET</p>
-          <h2>The lowest-priced chain was consistent; the gap was not</h2>
+          <p class="section-number">8. SUPERMARKET BASKET</p>
+          <h2>The cost of the same grocery basket</h2>
           <p>
-            Each dot is the June 2026 price of the same 14-item grocery basket.
-            Aldi was lowest in every state where it operated, while the local
-            spread was widest in the Northern Territory.
+            Each dot is the June 2026 price of the same 14-item basket. Aldi was
+            the cheapest surveyed chain in every state where it operated. The
+            distance between dots shows the price range within each state.
           </p>
           <p class="method-note">
             Range-and-dot plot · CHOICE quarterly basket survey · June 2026
@@ -187,12 +187,12 @@
 
       <section class="story-section reverse" id="retailer-gap">
         <div class="section-copy">
-          <p class="section-number">09 · RETAILER GAP</p>
-          <h2>The discount-to-IGA gap changed by more than ten dollars between states</h2>
+          <p class="section-number">9. RETAILER COMPARISON</p>
+          <h2>The Aldi–IGA gap varies by state</h2>
           <p>
-            Connecting the same two retailers makes the state effect visible.
-            Victoria's gap was about $17, while the ACT gap approached $28 for
-            the identical 14-item basket.
+            The lines connect Aldi and IGA prices for the same 14-item basket.
+            Victoria's difference was about $17, compared with almost $28 in the
+            ACT.
           </p>
           <p class="method-note">
             Slope graph · Aldi versus IGA · states where both were surveyed
@@ -206,12 +206,12 @@
 
       <section class="story-section" id="stores">
         <div class="section-copy">
-          <p class="section-number">10 · STORE LOCATIONS</p>
-          <h2>Major chains overlap with a long tail of local stores</h2>
+          <p class="section-number">10. STORE LOCATIONS</p>
+          <h2>Supermarkets across Greater Melbourne</h2>
           <p>
-            Each point is an OpenStreetMap feature tagged as a supermarket and
-            located inside an official Greater Melbourne SA2. Select a brand in
-            the legend to focus the map.
+            Each point is a supermarket recorded in OpenStreetMap within a Greater
+            Melbourne SA2. Select a brand in the legend to show where that group
+            is located.
           </p>
           <p class="method-note">
             Point map · 11 October 2026 OSM snapshot · click the legend to filter
@@ -225,12 +225,12 @@
 
       <section class="story-section reverse" id="access">
         <div class="section-copy">
-          <p class="section-number">11 · LOCAL ACCESS</p>
-          <h2>Store counts mean something different after population is considered</h2>
+          <p class="section-number">11. LOCAL ACCESS</p>
+          <h2>Supermarkets per 10,000 residents</h2>
           <p>
-            This map divides each SA2 supermarket count by its 2025 estimated
-            resident population. Hover to compare access, population and weekly
-            equivalised household income.
+            Raw store counts favour larger areas. This map divides the number of
+            supermarkets in each SA2 by its 2025 population. Hover to compare the
+            rate, population and household income.
           </p>
           <p class="method-note">
             Choropleth · supermarkets per 10,000 residents · SA2s below 1,000
@@ -245,14 +245,14 @@
 
       <section class="notes-section" aria-labelledby="notes-title">
         <div>
-          <p class="section-number">READING THE MAPS</p>
-          <h2 id="notes-title">What these prototypes establish</h2>
+          <p class="section-number">NOTES</p>
+          <h2 id="notes-title">Data and limitations</h2>
         </div>
         <div class="notes-grid">
           <p>
-            Eleven views use eleven distinct idioms: line, 100% stacked area, heatmap, bump,
-            lollipop, horizontal bar, graduated symbols, range-and-dot, slope, point
-            map and choropleth. Each answers a different question.
+            Price data come from the ABS and CHOICE. The latest period differs by
+            dataset, so dates are shown beside each chart. Hover over a mark for
+            the underlying value where available.
           </p>
           <p>
             OpenStreetMap is community maintained. Store locations and brand tags
