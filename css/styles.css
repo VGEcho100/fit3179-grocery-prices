@@ -152,18 +152,9 @@ h2 {
   line-height: 1.1;
 }
 
-.section-copy > p:not(.section-number, .method-note) {
+.section-copy > p:not(.section-number) {
   color: var(--muted);
   font-size: 1rem;
-}
-
-.method-note {
-  margin-top: 2rem;
-  padding-top: 1rem;
-  color: var(--leaf-dark);
-  border-top: 1px solid var(--leaf);
-  font-size: 0.8rem;
-  font-weight: 600;
 }
 
 .chart-card {
