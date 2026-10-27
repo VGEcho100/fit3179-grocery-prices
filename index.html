@@ -9,7 +9,7 @@
     />
     <title>Grocery prices and supermarket access</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-    <link rel="stylesheet" href="css/styles.css?v=19" />
+    <link rel="stylesheet" href="css/styles.css?v=20" />
     <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.5.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
@@ -112,17 +112,21 @@
           <p class="section-number">5–6. RECENT PRICE MOVEMENT</p>
           <h2>Recent changes and monthly variation</h2>
           <p>
-            The first chart compares annual price changes in August 2026. The
-            second shows the average size of each category's monthly change since
-            September 2023. Longer bars indicate greater month-to-month variation.
+            The first view groups 25 detailed foods by their annual price change in
+            August 2026. The second ranks the average size of their monthly changes.
+            Hover over or focus a food label to see its exact annual rate.
           </p>
         </div>
         <div class="chart-pair">
-          <div class="chart-card compact-card">
-            <h3>Latest annual change</h3>
-            <p class="chart-kicker">August 2026, selected everyday categories</p>
-            <div id="lollipop-chart" class="chart" aria-label="Latest annual price change by detailed food category"></div>
-            <p class="chart-status" id="lollipop-chart-status" role="status">Loading chart…</p>
+          <div class="chart-card price-band-card">
+            <h3>Where each food sits</h3>
+            <p class="chart-kicker">Annual price change in August 2026, 25 detailed categories</p>
+            <div class="price-band-callout">
+              <strong>The same month contained both sharp falls and sharp rises.</strong>
+              <span>Egg prices fell 4.7%, while beef and lamb prices rose 9.4%.</span>
+            </div>
+            <div id="price-band-chart" class="price-band-chart" aria-label="Detailed food categories grouped into annual price change bands"></div>
+            <p class="chart-status" id="price-band-chart-status" role="status">Loading price bands…</p>
           </div>
           <div class="chart-card compact-card">
             <h3>Typical monthly movement</h3>
@@ -228,7 +232,8 @@
       </div>
     </footer>
 
-    <script src="js/maps.js?v=17"></script>
+    <script src="js/maps.js?v=18"></script>
+    <script src="js/price-bands.js?v=1"></script>
     <script src="js/navigation.js?v=1"></script>
   </body>
 </html>
