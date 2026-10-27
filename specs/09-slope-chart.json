@@ -32,7 +32,7 @@
     "y": {
       "field": "basket_price",
       "type": "quantitative",
-      "title": "14-item basket price (AUD)",
+      "title": "17-item basket price (AUD)",
       "scale": {
         "domain": [
           65,

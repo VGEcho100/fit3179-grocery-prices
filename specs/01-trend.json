@@ -2,6 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "width": 720,
   "height": 410,
+  "padding": {
+    "top": 5,
+    "right": 100,
+    "bottom": 5,
+    "left": 5
+  },
   "data": {
     "url": "data/clean/abs_food_australia_monthly.csv"
   },
@@ -43,55 +49,6 @@
       "as": "annual_change"
     }
   ],
-  "mark": {
-    "type": "line",
-    "point": {
-      "filled": true,
-      "fill": "#fffdf8",
-      "size": 34
-    },
-    "color": "#226b4f",
-    "strokeWidth": 2.6
-  },
-  "encoding": {
-    "x": {
-      "field": "date",
-      "type": "temporal",
-      "title": "Month",
-      "axis": {
-        "format": "%Y",
-        "tickCount": "year",
-        "labelAngle": 0
-      }
-    },
-    "y": {
-      "field": "annual_change",
-      "type": "quantitative",
-      "title": "Annual price change (%)",
-      "scale": {
-        "zero": true
-      }
-    },
-    "tooltip": [
-      {
-        "field": "category",
-        "type": "nominal",
-        "title": "Category"
-      },
-      {
-        "field": "date",
-        "type": "temporal",
-        "title": "Month",
-        "format": "%B %Y"
-      },
-      {
-        "field": "annual_change",
-        "type": "quantitative",
-        "title": "Annual change",
-        "format": ".1f"
-      }
-    ]
-  },
   "config": {
     "background": null,
     "view": {
@@ -110,5 +67,221 @@
       "titleFontWeight": 700,
       "symbolStrokeWidth": 1
     }
-  }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#9a9282",
+        "strokeDash": [
+          4,
+          4
+        ]
+      },
+      "encoding": {
+        "y": {
+          "datum": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "point": {
+          "filled": true,
+          "fill": "#fffdf8",
+          "size": 34
+        },
+        "color": "#226b4f",
+        "strokeWidth": 2.6
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": "Month",
+          "axis": {
+            "format": "%Y",
+            "tickCount": "year",
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "annual_change",
+          "type": "quantitative",
+          "title": "Annual price change (%)",
+          "scale": {
+            "zero": true
+          }
+        },
+        "tooltip": [
+          {
+            "field": "category",
+            "type": "nominal",
+            "title": "Category"
+          },
+          {
+            "field": "date",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%B %Y"
+          },
+          {
+            "field": "annual_change",
+            "type": "quantitative",
+            "title": "Annual change",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "annual_change",
+              "as": "peak_change"
+            }
+          ]
+        },
+        {
+          "filter": "datum.annual_change === datum.peak_change"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "peak_order"
+            }
+          ],
+          "sort": [
+            {
+              "field": "date",
+              "order": "ascending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.peak_order === 1"
+        },
+        {
+          "calculate": "'Peak: ' + (datum.annual_change >= 0 ? '+' : '') + format(datum.annual_change, '.1f') + '%' + ' in ' + timeFormat(toDate(datum.date), '%b %Y')",
+          "as": "note"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 90,
+            "color": "#df6d3a",
+            "opacity": 1
+          },
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "annual_change",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "dy": -16,
+            "fontSize": 13,
+            "fontWeight": 700,
+            "color": "#17211b"
+          },
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "annual_change",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "note"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "transform": [
+        {
+          "calculate": "time(toDate(datum.date))",
+          "as": "date_time"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "date_time",
+              "as": "latest_time"
+            }
+          ]
+        },
+        {
+          "filter": "datum.date_time === datum.latest_time"
+        },
+        {
+          "calculate": "timeFormat(toDate(datum.date), '%b %Y') + ': ' + (datum.annual_change >= 0 ? '+' : '') + format(datum.annual_change, '.1f') + '%'",
+          "as": "note"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 90,
+            "color": "#17211b",
+            "opacity": 1
+          },
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "annual_change",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 9,
+            "dy": 0,
+            "fontSize": 13,
+            "fontWeight": 700,
+            "color": "#17211b",
+            "baseline": "middle"
+          },
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "annual_change",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "note"
+            }
+          }
+        }
+      ]
+    }
+  ]
 }

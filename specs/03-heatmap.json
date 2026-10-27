@@ -14,84 +14,6 @@
       "as": "annual_change"
     }
   ],
-  "mark": {
-    "type": "rect",
-    "stroke": "#fffdf8",
-    "strokeWidth": 0.6
-  },
-  "encoding": {
-    "x": {
-      "field": "date",
-      "type": "temporal",
-      "timeUnit": "yearmonth",
-      "title": "Month",
-      "axis": {
-        "format": "%b %Y",
-        "labelAngle": -45,
-        "tickCount": 8
-      }
-    },
-    "y": {
-      "field": "category",
-      "type": "nominal",
-      "title": null,
-      "sort": [
-        "Bread",
-        "Beef and veal",
-        "Lamb and goat",
-        "Poultry",
-        "Fish and other seafood",
-        "Milk",
-        "Cheese",
-        "Eggs",
-        "Fruit",
-        "Vegetables",
-        "Coffee, tea and cocoa"
-      ],
-      "axis": {
-        "labelLimit": 170
-      }
-    },
-    "color": {
-      "field": "annual_change",
-      "type": "quantitative",
-      "title": "Annual change (%)",
-      "scale": {
-        "domain": [
-          -5,
-          15
-        ],
-        "domainMid": 0,
-        "clamp": true,
-        "scheme": "redblue",
-        "reverse": true
-      },
-      "legend": {
-        "orient": "bottom",
-        "direction": "horizontal",
-        "gradientLength": 260
-      }
-    },
-    "tooltip": [
-      {
-        "field": "category",
-        "type": "nominal",
-        "title": "Category"
-      },
-      {
-        "field": "date",
-        "type": "temporal",
-        "title": "Month",
-        "format": "%B %Y"
-      },
-      {
-        "field": "annual_change",
-        "type": "quantitative",
-        "title": "Annual change",
-        "format": ".1f"
-      }
-    ]
-  },
   "config": {
     "background": null,
     "view": {
@@ -110,5 +32,206 @@
       "titleFontWeight": 700,
       "symbolStrokeWidth": 1
     }
-  }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#fffdf8",
+        "strokeWidth": 0.6
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "timeUnit": "yearmonth",
+          "title": "Month",
+          "axis": {
+            "format": "%b %Y",
+            "labelAngle": -45,
+            "tickCount": 8
+          }
+        },
+        "y": {
+          "field": "category",
+          "type": "nominal",
+          "title": null,
+          "sort": [
+            "Bread",
+            "Beef and veal",
+            "Lamb and goat",
+            "Poultry",
+            "Fish and other seafood",
+            "Milk",
+            "Cheese",
+            "Eggs",
+            "Fruit",
+            "Vegetables",
+            "Coffee, tea and cocoa"
+          ],
+          "axis": {
+            "labelLimit": 170
+          }
+        },
+        "color": {
+          "field": "annual_change",
+          "type": "quantitative",
+          "title": "Annual change (%)",
+          "scale": {
+            "domain": [
+              -5,
+              15
+            ],
+            "domainMid": 0,
+            "clamp": true,
+            "scheme": "redblue",
+            "reverse": true
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 260
+          }
+        },
+        "tooltip": [
+          {
+            "field": "category",
+            "type": "nominal",
+            "title": "Category"
+          },
+          {
+            "field": "date",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%B %Y"
+          },
+          {
+            "field": "annual_change",
+            "type": "quantitative",
+            "title": "Annual change",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "annual_change",
+              "as": "max_change"
+            },
+            {
+              "op": "min",
+              "field": "annual_change",
+              "as": "min_change"
+            }
+          ]
+        },
+        {
+          "filter": "datum.annual_change === datum.max_change || datum.annual_change === datum.min_change"
+        },
+        {
+          "calculate": "datum.category + ' ' + (datum.annual_change >= 0 ? '+' : '') + format(datum.annual_change, '.1f') + '%' + ' (' + timeFormat(toDate(datum.date), '%b %Y') + ')'",
+          "as": "note"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "rect",
+            "filled": false,
+            "stroke": "#17211b",
+            "strokeWidth": 2
+          },
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "temporal",
+              "timeUnit": "yearmonth"
+            },
+            "y": {
+              "field": "category",
+              "type": "nominal",
+              "sort": [
+                "Bread",
+                "Beef and veal",
+                "Lamb and goat",
+                "Poultry",
+                "Fish and other seafood",
+                "Milk",
+                "Cheese",
+                "Eggs",
+                "Fruit",
+                "Vegetables",
+                "Coffee, tea and cocoa"
+              ]
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#17211b",
+            "strokeWidth": 1
+          },
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "temporal",
+              "timeUnit": "yearmonth",
+              "bandPosition": 0.5
+            },
+            "y": {
+              "field": "category",
+              "type": "nominal",
+              "sort": [
+                "Bread",
+                "Beef and veal",
+                "Lamb and goat",
+                "Poultry",
+                "Fish and other seafood",
+                "Milk",
+                "Cheese",
+                "Eggs",
+                "Fruit",
+                "Vegetables",
+                "Coffee, tea and cocoa"
+              ],
+              "bandPosition": 0
+            },
+            "y2": {
+              "value": -8
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "baseline": "bottom",
+            "dy": -11,
+            "fontSize": 12.5,
+            "fontWeight": 700,
+            "color": "#17211b"
+          },
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "temporal",
+              "timeUnit": "yearmonth",
+              "bandPosition": 0.5
+            },
+            "y": {
+              "value": 0
+            },
+            "text": {
+              "field": "note"
+            }
+          }
+        }
+      ]
+    }
+  ]
 }

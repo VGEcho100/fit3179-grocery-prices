@@ -151,6 +151,221 @@
           }
         ]
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 144.8285,
+            "lat": -37.7937,
+            "label": "Sunshine\n14.8 per 10,000, the highest rate",
+            "side": "left",
+            "marker": true
+          },
+          {
+            "lon": 144.9755,
+            "lat": -37.5898,
+            "label": "Wollert\n36,658 residents, no supermarket",
+            "side": "right",
+            "marker": true
+          },
+          {
+            "lon": 144.66,
+            "lat": -38.08,
+            "label": "Port Phillip Bay",
+            "side": "right",
+            "marker": false
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 46,
+            "fill": "#fffdf8",
+            "stroke": "#17211b",
+            "strokeWidth": 2,
+            "opacity": 1
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            }
+          },
+          "transform": [
+            {
+              "filter": "datum.marker"
+            }
+          ]
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.side === 'left'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "middle",
+            "dx": -10,
+            "fontSize": 12.5,
+            "fontWeight": 700,
+            "lineBreak": "\n",
+            "lineHeight": 15,
+            "color": "#17211b",
+            "stroke": "#fffdf8",
+            "strokeWidth": 4,
+            "strokeJoin": "round",
+            "strokeOpacity": 0.9
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.side === 'left'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "middle",
+            "dx": -10,
+            "fontSize": 12.5,
+            "fontWeight": 700,
+            "lineBreak": "\n",
+            "lineHeight": 15,
+            "color": "#17211b"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.side === 'right'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 10,
+            "fontSize": 12.5,
+            "fontWeight": 700,
+            "lineBreak": "\n",
+            "lineHeight": 15,
+            "color": "#17211b",
+            "stroke": "#fffdf8",
+            "strokeWidth": 4,
+            "strokeJoin": "round",
+            "strokeOpacity": 0.9
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.side === 'right'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 10,
+            "fontSize": 12.5,
+            "fontWeight": 700,
+            "lineBreak": "\n",
+            "lineHeight": 15,
+            "color": "#17211b"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "note": "48 SA2s, home to 557,000 people, have no supermarket.\nGrey areas have fewer than 1,000 residents and are not rated."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "bottom",
+        "fontSize": 12.5,
+        "lineBreak": "\n",
+        "lineHeight": 17,
+        "color": "#5e6c63"
+      },
+      "encoding": {
+        "x": {
+          "value": 720
+        },
+        "y": {
+          "value": 580
+        },
+        "text": {
+          "field": "note"
+        }
+      }
     }
   ],
   "config": {

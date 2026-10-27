@@ -18,6 +18,92 @@
     {
       "transform": [
         {
+          "filter": "datum.supermarket === 'Aldi'"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "basket_price",
+              "as": "aldi_low"
+            },
+            {
+              "op": "max",
+              "field": "basket_price",
+              "as": "aldi_high"
+            },
+            {
+              "op": "count",
+              "as": "aldi_states"
+            }
+          ]
+        },
+        {
+          "calculate": "'Aldi was cheapest in all ' + datum.aldi_states + ' states it serves: $' + format(datum.aldi_low, '.0f') + '–$' + format(datum.aldi_high, '.0f')",
+          "as": "note"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "rect",
+            "color": "#1b5ca8",
+            "opacity": 0.1
+          },
+          "encoding": {
+            "x": {
+              "type": "quantitative",
+              "field": "aldi_low",
+              "scale": {
+                "domain": [
+                  64,
+                  124
+                ],
+                "nice": false,
+                "zero": false
+              }
+            },
+            "x2": {
+              "field": "aldi_high"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "bottom",
+            "dy": -8,
+            "fontSize": 12.5,
+            "fontWeight": 700,
+            "color": "#1b5ca8"
+          },
+          "encoding": {
+            "x": {
+              "type": "quantitative",
+              "field": "aldi_low",
+              "scale": {
+                "domain": [
+                  64,
+                  124
+                ],
+                "nice": false,
+                "zero": false
+              }
+            },
+            "y": {
+              "value": 0
+            },
+            "text": {
+              "field": "note"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "transform": [
+        {
           "joinaggregate": [
             {
               "op": "min",
@@ -59,13 +145,14 @@
         "x": {
           "field": "lowest_price",
           "type": "quantitative",
-          "title": "14-item basket price (AUD)",
+          "title": "17-item basket price (AUD)",
           "scale": {
             "domain": [
-              65,
-              112
+              64,
+              124
             ],
-            "nice": false
+            "nice": false,
+            "zero": false
           },
           "axis": {
             "format": "$,.0f"
@@ -103,13 +190,14 @@
         "x": {
           "field": "basket_price",
           "type": "quantitative",
-          "title": "14-item basket price (AUD)",
+          "title": "17-item basket price (AUD)",
           "scale": {
             "domain": [
-              65,
-              112
+              64,
+              124
             ],
-            "nice": false
+            "nice": false,
+            "zero": false
           },
           "axis": {
             "format": "$,.0f"
@@ -157,6 +245,73 @@
             "format": "$,.2f"
           }
         ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "min",
+              "field": "basket_price",
+              "as": "lowest_price"
+            },
+            {
+              "op": "max",
+              "field": "basket_price",
+              "as": "highest_price"
+            }
+          ],
+          "groupby": [
+            "state"
+          ]
+        },
+        {
+          "filter": "datum.basket_price === datum.highest_price"
+        },
+        {
+          "calculate": "'$' + format(datum.highest_price - datum.lowest_price, '.2f') + ' gap'",
+          "as": "gap_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#5e6c63"
+      },
+      "encoding": {
+        "x": {
+          "type": "quantitative",
+          "field": "highest_price",
+          "scale": {
+            "domain": [
+              64,
+              124
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": [
+            "ACT",
+            "NSW",
+            "NT",
+            "QLD",
+            "SA",
+            "TAS",
+            "VIC",
+            "WA"
+          ]
+        },
+        "text": {
+          "field": "gap_label"
+        }
       }
     }
   ],

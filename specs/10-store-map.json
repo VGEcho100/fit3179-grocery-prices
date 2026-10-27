@@ -130,6 +130,192 @@
           }
         ]
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 144.9631,
+            "lat": -37.8136,
+            "label": "Melbourne CBD\n22 supermarkets in 3 SA2s",
+            "side": "left",
+            "marker": true
+          },
+          {
+            "lon": 145.2231,
+            "lat": -37.9832,
+            "label": "Dandenong North\n23 stores, the most of any SA2",
+            "side": "right",
+            "marker": true
+          },
+          {
+            "lon": 144.66,
+            "lat": -38.08,
+            "label": "Port Phillip Bay",
+            "side": "right",
+            "marker": false
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 46,
+            "fill": "#fffdf8",
+            "stroke": "#17211b",
+            "strokeWidth": 2,
+            "opacity": 1
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            }
+          },
+          "transform": [
+            {
+              "filter": "datum.marker"
+            }
+          ]
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.side === 'left'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "middle",
+            "dx": -10,
+            "fontSize": 12.5,
+            "fontWeight": 700,
+            "lineBreak": "\n",
+            "lineHeight": 15,
+            "color": "#17211b",
+            "stroke": "#fffdf8",
+            "strokeWidth": 4,
+            "strokeJoin": "round",
+            "strokeOpacity": 0.9
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.side === 'left'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "middle",
+            "dx": -10,
+            "fontSize": 12.5,
+            "fontWeight": 700,
+            "lineBreak": "\n",
+            "lineHeight": 15,
+            "color": "#17211b"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.side === 'right'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 10,
+            "fontSize": 12.5,
+            "fontWeight": 700,
+            "lineBreak": "\n",
+            "lineHeight": 15,
+            "color": "#17211b",
+            "stroke": "#fffdf8",
+            "strokeWidth": 4,
+            "strokeJoin": "round",
+            "strokeOpacity": 0.9
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.side === 'right'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 10,
+            "fontSize": 12.5,
+            "fontWeight": 700,
+            "lineBreak": "\n",
+            "lineHeight": 15,
+            "color": "#17211b"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        }
+      ]
     }
   ],
   "config": {
