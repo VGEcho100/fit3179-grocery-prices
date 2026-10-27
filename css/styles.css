@@ -219,6 +219,10 @@ h2 {
   min-height: 470px;
 }
 
+.chart.waffle-chart {
+  min-height: 0;
+}
+
 .dashboard-section {
   grid-template-columns: minmax(240px, 0.28fr) minmax(0, 0.72fr);
 }

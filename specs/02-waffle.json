@@ -1,0 +1,475 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 672,
+  "height": 348,
+  "data": {
+    "url": "data/clean/abs_food_australia_monthly.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.measure === 'contribution_to_all_groups_index' && datum.date === '2026-08-01' && indexof([\"Meals out and take away foods\",\"Food products n.e.c.\",\"Meat and seafoods\",\"Fruit and vegetables\",\"Bread and cereal products\",\"Non-alcoholic beverages\",\"Dairy and related products\"], datum.category) >= 0"
+    },
+    {
+      "calculate": "toNumber(datum.value)",
+      "as": "contribution"
+    },
+    {
+      "calculate": "datum.category === 'Meals out and take away foods' ? 'Eating out' : 'Groceries'",
+      "as": "group"
+    },
+    {
+      "calculate": "datum.group === 'Eating out' ? 0 : 1",
+      "as": "group_order"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "contribution",
+          "as": "food_contribution_total"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.contribution / datum.food_contribution_total",
+      "as": "share"
+    },
+    {
+      "calculate": "floor(datum.share * 100)",
+      "as": "base_cells"
+    },
+    {
+      "calculate": "datum.share * 100 - datum.base_cells",
+      "as": "remainder"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "base_cells",
+          "as": "base_total"
+        }
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "remainder_rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "remainder",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.base_cells + (datum.remainder_rank <= 100 - datum.base_total ? 1 : 0)",
+      "as": "cells"
+    },
+    {
+      "window": [
+        {
+          "op": "sum",
+          "field": "cells",
+          "as": "group_cell_end"
+        }
+      ],
+      "groupby": [
+        "group"
+      ],
+      "sort": [
+        {
+          "field": "share",
+          "order": "descending"
+        }
+      ],
+      "frame": [
+        null,
+        0
+      ],
+      "ignorePeers": true
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "label_index"
+        }
+      ],
+      "sort": [
+        {
+          "field": "group_order",
+          "order": "ascending"
+        },
+        {
+          "field": "share",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.group === 'Eating out' ? datum.cells : 0",
+      "as": "eating_out_cells"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "eating_out_cells",
+          "as": "eating_out_total"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.group_order === 0 ? 0 : ceil(datum.eating_out_total / 10) + 1",
+      "as": "group_column"
+    },
+    {
+      "calculate": "sequence(0, datum.cells)",
+      "as": "offset"
+    },
+    {
+      "flatten": [
+        "offset"
+      ]
+    },
+    {
+      "calculate": "datum.group_cell_end - datum.cells + datum.offset",
+      "as": "group_cell"
+    },
+    {
+      "calculate": "datum.group_column + floor(datum.group_cell / 10)",
+      "as": "column"
+    },
+    {
+      "calculate": "datum.group_cell % 10",
+      "as": "row"
+    },
+    {
+      "calculate": "datum.column + 0.07",
+      "as": "x0"
+    },
+    {
+      "calculate": "datum.column + 0.93",
+      "as": "x1"
+    },
+    {
+      "calculate": "datum.row + 0.07",
+      "as": "y0"
+    },
+    {
+      "calculate": "datum.row + 0.93",
+      "as": "y1"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          22.4
+        ],
+        "nice": false,
+        "zero": false
+      },
+      "axis": null
+    },
+    "y": {
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          -1.6,
+          10
+        ],
+        "nice": false,
+        "zero": false,
+        "reverse": true
+      },
+      "axis": null
+    }
+  },
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "focus",
+          "select": {
+            "type": "point",
+            "fields": [
+              "category"
+            ],
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 3,
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "x": {
+          "field": "x0"
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0"
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "category",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Meals out and take away foods",
+              "Food products n.e.c.",
+              "Meat and seafoods",
+              "Fruit and vegetables",
+              "Bread and cereal products",
+              "Non-alcoholic beverages",
+              "Dairy and related products"
+            ],
+            "range": [
+              "#df6d3a",
+              "#1f5e46",
+              "#4f9a72",
+              "#9ccbab",
+              "#2f6f9f",
+              "#6fa3cc",
+              "#b8d4e8"
+            ]
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "focus",
+            "empty": true,
+            "value": 1
+          },
+          "value": 0.22
+        },
+        "tooltip": [
+          {
+            "field": "category",
+            "type": "nominal",
+            "title": "Category"
+          },
+          {
+            "field": "group",
+            "type": "nominal",
+            "title": "Group"
+          },
+          {
+            "field": "share",
+            "type": "quantitative",
+            "title": "Share of food contribution",
+            "format": ".1%"
+          },
+          {
+            "field": "contribution",
+            "type": "quantitative",
+            "title": "Contribution (index points)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "x0",
+              "as": "group_x0"
+            },
+            {
+              "op": "max",
+              "field": "x1",
+              "as": "group_x1"
+            }
+          ],
+          "groupby": [
+            "group"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#17211b",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "group_x0"
+        },
+        "x2": {
+          "field": "group_x1"
+        },
+        "y": {
+          "datum": -0.35
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "x0",
+              "as": "group_x0"
+            },
+            {
+              "op": "count",
+              "as": "group_cells"
+            }
+          ],
+          "groupby": [
+            "group"
+          ]
+        },
+        {
+          "calculate": "datum.group + ' \u00b7 ' + datum.group_cells + '%'",
+          "as": "group_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "fontSize": 15,
+        "fontWeight": 700,
+        "color": "#17211b"
+      },
+      "encoding": {
+        "x": {
+          "field": "group_x0"
+        },
+        "y": {
+          "datum": -0.65
+        },
+        "text": {
+          "field": "group_label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.offset === 0"
+        },
+        {
+          "calculate": "(datum.label_index - 1) * 1.3 + datum.group_order * 0.7 + 0.5",
+          "as": "label_y"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "square",
+            "size": 150,
+            "filled": true
+          },
+          "encoding": {
+            "x": {
+              "datum": 13.2
+            },
+            "y": {
+              "field": "label_y"
+            },
+            "color": {
+              "field": "category",
+              "type": "nominal",
+              "legend": null
+            },
+            "opacity": {
+              "condition": {
+                "param": "focus",
+                "empty": true,
+                "value": 1
+              },
+              "value": 0.3
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 13,
+            "fontWeight": 700,
+            "color": "#17211b"
+          },
+          "encoding": {
+            "x": {
+              "datum": 13.7
+            },
+            "y": {
+              "field": "label_y"
+            },
+            "text": {
+              "field": "share",
+              "format": ".1%"
+            },
+            "opacity": {
+              "condition": {
+                "param": "focus",
+                "empty": true,
+                "value": 1
+              },
+              "value": 0.3
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 12,
+            "color": "#49574e",
+            "limit": 210
+          },
+          "encoding": {
+            "x": {
+              "datum": 15.35
+            },
+            "y": {
+              "field": "label_y"
+            },
+            "text": {
+              "field": "category"
+            },
+            "opacity": {
+              "condition": {
+                "param": "focus",
+                "empty": true,
+                "value": 1
+              },
+              "value": 0.3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial"
+  }
+}

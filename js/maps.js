@@ -1,6 +1,6 @@
 const visualisations = [
   ["#trend-chart", "#trend-chart-status", "specs/01-trend.json"],
-  ["#stream-chart", "#stream-chart-status", "specs/02-stacked-area.json"],
+  ["#composition-chart", "#composition-chart-status", "specs/02-waffle.json"],
   ["#category-heatmap", "#category-heatmap-status", "specs/03-heatmap.json"],
   ["#bump-chart", "#bump-chart-status", "specs/04-bump-chart.json?v=17"],
   ["#volatility-chart", "#volatility-chart-status", "specs/06-monthly-movement.json"],

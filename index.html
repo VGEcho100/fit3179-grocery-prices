@@ -9,7 +9,7 @@
     />
     <title>Grocery prices and supermarket access</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-    <link rel="stylesheet" href="css/styles.css?v=22" />
+    <link rel="stylesheet" href="css/styles.css?v=23" />
     <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.5.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
@@ -64,14 +64,14 @@
           <p class="section-number">2. CPI COMPOSITION</p>
           <h2>What makes up food CPI?</h2>
           <p>
-            Each band shows a food group's share of food's contribution to the
-            all-groups CPI. The bands add to 100%. Meals out and takeaway foods
-            accounted for about 41% in August 2026.
+            Each square is 1% of food's contribution to the all-groups CPI in
+            August 2026. Eating out accounted for 41%, more than the three largest
+            grocery groups combined. Hover over a square to see its exact share.
           </p>
         </div>
-        <div class="chart-card compact-card">
-          <div id="stream-chart" class="chart" aria-label="100 percent stacked area chart of food category shares of CPI contribution"></div>
-          <p class="chart-status" id="stream-chart-status" role="status">Loading chart…</p>
+        <div class="chart-card">
+          <div id="composition-chart" class="chart waffle-chart" aria-label="Waffle chart of food category shares of CPI contribution in August 2026, split into eating out and groceries"></div>
+          <p class="chart-status" id="composition-chart-status" role="status">Loading chart…</p>
         </div>
       </section>
 
@@ -273,7 +273,7 @@
       </div>
     </footer>
 
-    <script src="js/maps.js?v=18"></script>
+    <script src="js/maps.js?v=19"></script>
     <script src="js/price-bands.js?v=3"></script>
     <script src="js/navigation.js?v=1"></script>
   </body>
