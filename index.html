@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" />
-    <link rel="stylesheet" href="css/styles.css?v=28" />
+    <link rel="stylesheet" href="css/styles.css?v=29" />
     <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.5.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
@@ -37,29 +37,34 @@
       <div class="hero-grid" id="top">
         <div class="hero-copy">
           <p class="eyebrow">FIT3179 DATA VISUALISATION 2</p>
-          <h1>Grocery prices and supermarket access</h1>
+          <h1>Same trolley, different bill</h1>
           <p class="lede">
-            Food prices are still rising, but not evenly. This story follows the
-            Consumer Price Index (CPI), the ABS measure of how the price of a fixed
-            basket of household goods changes over time, from the national food
-            bill down to which Melbourne suburbs have a supermarket nearby.
+            Australian food prices rose 3.0% in the year to August 2026. Hardly
+            anyone's shopping went up by exactly that much, though. What you pay
+            depends on what goes in the trolley, which chain you shop at, and
+            whether your suburb has a supermarket at all.
+          </p>
+          <p class="lede lede-small">
+            Most of the price data comes from the Consumer Price Index (CPI), which
+            the ABS uses to track how the cost of a fixed set of household goods
+            changes over time.
           </p>
           <dl class="hero-stats">
             <div>
               <dt>3.0%</dt>
-              <dd>Rise in Australian food prices over the year to August 2026</dd>
+              <dd>food price rise, year to August 2026</dd>
             </div>
             <div>
               <dt>41%</dt>
-              <dd>Share of food's contribution to the CPI that comes from eating out</dd>
+              <dd>of food CPI is meals out and takeaway</dd>
             </div>
             <div>
               <dt>$17–$34</dt>
-              <dd>Extra cost of the dearest supermarket basket over the cheapest, by state</dd>
+              <dd>extra for the same basket at the dearest chain, depending on the state</dd>
             </div>
             <div>
               <dt>557,000</dt>
-              <dd>Greater Melbourne residents living in an area with no supermarket</dd>
+              <dd>Melburnians live in an area with no supermarket</dd>
             </div>
           </dl>
           <p class="byline">By Jin XIE · October 2026</p>
@@ -71,11 +76,12 @@
       <section class="story-section" id="trend">
         <div class="section-copy">
           <p class="section-number">1. PRICE TREND</p>
-          <h2>How food prices changed since 2018</h2>
+          <h2>Every food group peaked in 2022</h2>
           <p>
-            Choose a food group from the menu to follow its annual price change.
-            Categories peaked at different times, so the overall food inflation
-            figure does not tell the whole story.
+            Pick a food group from the menu below the chart. All six hit their
+            highest annual rise between August and December 2022, but they have
+            cooled at different speeds. Fruit and vegetables are back under 1%,
+            while dairy is still rising at 5.4%.
           </p>
         </div>
         <div class="chart-card compact-card">
@@ -87,13 +93,12 @@
       <section class="story-section reverse" id="composition">
         <div class="section-copy">
           <p class="section-number">2. CPI COMPOSITION</p>
-          <h2>What makes up food CPI?</h2>
+          <h2>Eating out is the biggest slice</h2>
           <p>
-            Each square is 1% of food's contribution to the overall CPI in August
-            2026, which reflects how much households spend on each group and how
-            much its prices have changed. Eating out accounted for 41%, more than
-            the three largest grocery groups combined. Hover over a square to see
-            its exact share.
+            Each square is 1% of food's contribution to the CPI in August 2026.
+            That share depends on how much households spend on a group and how far
+            its prices have moved. Meals out and takeaway make up 41 squares, more
+            than meat, fruit and vegetables, and other food put together.
           </p>
           <p class="term-note">
             <strong>n.e.c.</strong> stands for "not elsewhere classified". Food
@@ -110,11 +115,12 @@
       <section class="story-section" id="categories">
         <div class="section-copy">
           <p class="section-number">3. FOOD CATEGORIES</p>
-          <h2>Price growth by category</h2>
+          <h2>Lamb went from &minus;21% to +26% in a year</h2>
           <p>
-            Each cell shows the annual price change for one category in one month.
-            Red indicates an increase and blue a fall. Hover over a cell to see
-            the exact value.
+            Each cell is one food in one month: red means it cost more than a year
+            earlier, blue means less. Lamb and goat swung harder than anything
+            else. Eggs are the other one to watch, going from up 19% in mid-2025
+            to down 5% a year later.
           </p>
         </div>
         <div class="chart-card wide-card">
@@ -126,12 +132,12 @@
       <section class="story-section reverse" id="rankings">
         <div class="section-copy">
           <p class="section-number">4. ANNUAL RANKING</p>
-          <h2>Which food group ranked highest?</h2>
+          <h2>No group stayed on top two years running</h2>
           <p>
-            The chart ranks six broad food groups each August. Position 1 had the
-            fastest annual price growth and position 6 the slowest. The group in
-            first place changed each year. Hover over the chart to follow one
-            group and see its exact rate.
+            Each August, the six food groups are ranked from fastest price growth
+            (1) to slowest (6). Dairy was last in 2024 and first in 2026. A rank
+            doesn't show size, though: in 2022 even the slowest group, meat, rose
+            7.2%. Hover over the chart to follow one group.
           </p>
         </div>
         <div class="chart-card compact-card">
@@ -143,11 +149,12 @@
       <section class="story-section dashboard-section" id="detail">
         <div class="section-copy">
           <p class="section-number">5–6. RECENT PRICE MOVEMENT</p>
-          <h2>Recent changes and monthly variation</h2>
+          <h2>Some foods actually got cheaper</h2>
           <p>
-            The first view groups 25 detailed foods by their annual price change in
-            August 2026. The second ranks the average size of their monthly changes.
-            Hover over a food to see its exact annual rate.
+            Scroll through the first chart to see where 25 everyday foods landed
+            in August 2026. Three got cheaper and four rose 5% or more. The second
+            chart shows how jumpy prices are from one month to the next. Fruit
+            moves around the most and bread the least.
           </p>
         </div>
         <div class="chart-pair">
@@ -214,11 +221,11 @@
       <section class="story-section reverse" id="inflation">
         <div class="section-copy">
           <p class="section-number">7. CAPITAL CITIES</p>
-          <h2>Food inflation by capital city</h2>
+          <h2>Hobart up 3.6%, Canberra up 2.4%</h2>
           <p>
-            Larger, darker circles indicate a higher annual change in the Food and
-            non-alcoholic beverages CPI. All capital cities recorded an increase
-            in August 2026.
+            Bigger, darker circles mean food and drink prices rose faster over the
+            year to August 2026. Every capital went up, but the gap between the
+            fastest and slowest was more than a percentage point.
           </p>
         </div>
         <div class="chart-card">
@@ -230,11 +237,11 @@
       <section class="story-section" id="basket">
         <div class="section-copy">
           <p class="section-number">8. SUPERMARKET BASKET</p>
-          <h2>The cost of the same grocery basket</h2>
+          <h2>Aldi was cheapest everywhere it trades</h2>
           <p>
-            Each dot is the June 2026 price of the same 17-item basket. Aldi was
-            the cheapest surveyed chain in every state where it operated. The
-            distance between dots shows the price range within each state.
+            CHOICE priced the same 17 items at four chains in June 2026. Each dot
+            is one chain in one state, so the longer the line, the more it pays to
+            shop around. IGA was the dearest in every state.
           </p>
         </div>
         <div class="chart-card compact-card">
@@ -247,11 +254,10 @@
       <section class="story-section reverse" id="retailer-gap">
         <div class="section-copy">
           <p class="section-number">9. RETAILER COMPARISON</p>
-          <h2>The Aldi–IGA gap varies by state</h2>
+          <h2>$17 in Victoria, $28 in the ACT</h2>
           <p>
-            The lines connect Aldi and IGA prices for the same 17-item basket.
-            Victoria's difference was about $17, compared with almost $28 in the
-            ACT.
+            That is how much more the same basket cost at IGA than at Aldi. The
+            steeper the line, the bigger the difference between the two.
           </p>
         </div>
         <div class="chart-card compact-card">
@@ -263,11 +269,10 @@
       <section class="story-section" id="stores">
         <div class="section-copy">
           <p class="section-number">10. STORE LOCATIONS</p>
-          <h2>Supermarkets across Greater Melbourne</h2>
+          <h2>Where Melbourne's 1,038 supermarkets are</h2>
           <p>
-            Each point is a supermarket recorded in OpenStreetMap within Greater
-            Melbourne. Select a brand in the legend to show where that group is
-            located.
+            Each dot is a supermarket mapped in OpenStreetMap. Click a brand in
+            the legend to see only that chain's stores.
           </p>
           <p class="term-note">
             <strong>SA2</strong> (Statistical Area Level 2) is an ABS area about the
@@ -284,11 +289,11 @@
       <section class="story-section reverse" id="access">
         <div class="section-copy">
           <p class="section-number">11. LOCAL ACCESS</p>
-          <h2>Supermarkets per 10,000 residents</h2>
+          <h2>Half a million people, no local supermarket</h2>
           <p>
-            Raw store counts favour larger areas. This map divides the number of
-            supermarkets in each SA2 by its 2025 population. Hover to compare the
-            rate, population and household income.
+            Counting stores alone favours big areas, so this map shows supermarkets
+            per 10,000 residents in each SA2. The pale areas have few or none.
+            Hover over an area to see its population and household income too.
           </p>
         </div>
         <div class="chart-card">
@@ -299,42 +304,26 @@
 
       <section class="story-section conclusion-section" id="conclusion">
         <div class="section-copy">
-          <p class="section-number">WHAT THIS MEANS</p>
-          <h2>Three things to take away</h2>
-          <p>
-            The national food inflation rate is a useful headline, but what a
-            household pays depends on what it buys, where it shops and where it
-            lives.
-          </p>
+          <p class="section-number">BACK TO THE TROLLEY</p>
+          <h2>So, did your shopping go up 3%?</h2>
         </div>
-        <div class="takeaways">
-          <article class="takeaway">
-            <p class="takeaway-number">01</p>
-            <h3>The headline hides the spread</h3>
-            <p>
-              Food prices rose 3.0% over the year to August 2026, but egg prices
-              fell 4.7% while beef and lamb rose 9.4%. The average sits between
-              foods that moved in opposite directions.
-            </p>
-          </article>
-          <article class="takeaway">
-            <p class="takeaway-number">02</p>
-            <h3>Where you shop matters more than a year of inflation</h3>
-            <p>
-              At 3.0%, a year of food inflation adds roughly $2 to a $75 basket.
-              In June 2026, the dearest chain charged $17 to $34 more than the
-              cheapest for the same 17 items, depending on the state.
-            </p>
-          </article>
-          <article class="takeaway">
-            <p class="takeaway-number">03</p>
-            <h3>Access depends on the suburb</h3>
-            <p>
-              About 557,000 Greater Melbourne residents live in an SA2 with no
-              supermarket. They range from growth areas such as Wollert and Tarneit
-              North to established suburbs such as Brighton East.
-            </p>
-          </article>
+        <div class="closing-text">
+          <p>
+            Probably not by exactly that. Beef and lamb rose 9.4% over the year to
+            August 2026, while eggs got cheaper. A trolley heavy on beef and lamb
+            went up by more than the average. One that is mostly eggs, bread and
+            fruit went up by less.
+          </p>
+          <p>
+            Where you shop matters more. A year of 3% inflation adds about $2 to a
+            $75 basket. Going to the cheapest chain instead of the dearest saved
+            $17 to $34 on the same 17 items in June 2026.
+          </p>
+          <p>
+            That only helps if there is a supermarket nearby. About 557,000 people
+            in Greater Melbourne live in an area without one, from new estates in
+            Wollert and Tarneit North to older suburbs like Brighton East.
+          </p>
         </div>
       </section>
 
