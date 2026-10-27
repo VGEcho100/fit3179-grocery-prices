@@ -50,6 +50,8 @@
     const value = Math.abs(row.value).toFixed(1);
 
     item.className = `price-pill price-pill--${bandKey}`;
+    item.dataset.band = bandKey;
+    item.dataset.category = row.category;
     item.tabIndex = 0;
     item.textContent = row.category;
     item.dataset.tooltip = `${direction} ${value}%`;
@@ -85,6 +87,86 @@
 
     chart.replaceChildren(grid);
     status.textContent = "";
+    applyHighlight(activeStep);
+  }
+
+  // Scroll-driven highlighting: each step card dims every pill it does not mention.
+  const scrolly = document.querySelector("#price-band-scrolly");
+  const steps = scrolly ? Array.from(scrolly.querySelectorAll(".price-band-step")) : [];
+  const scrollyQuery = window.matchMedia("(min-width: 901px) and (min-height: 640px)");
+  let activeStep = null;
+  let updateRequested = false;
+
+  function applyHighlight(step) {
+    const bandKeys = step?.dataset.bands ? step.dataset.bands.split("|") : [];
+    const foods = step?.dataset.foods ? step.dataset.foods.split("|") : [];
+
+    chart.querySelectorAll(".price-bin").forEach((group) => {
+      let groupHasMatch = false;
+
+      group.querySelectorAll(".price-pill").forEach((pill) => {
+        const isMatch =
+          !step || bandKeys.includes(pill.dataset.band) || foods.includes(pill.dataset.category);
+        pill.classList.toggle("is-dimmed", !isMatch);
+        groupHasMatch = groupHasMatch || isMatch;
+      });
+
+      group.classList.toggle("is-dimmed", !groupHasMatch);
+    });
+
+    steps.forEach((item) => item.classList.toggle("is-active", item === step));
+  }
+
+  function updateScrolly() {
+    updateRequested = false;
+
+    if (!scrolly.classList.contains("is-scrolly")) {
+      return;
+    }
+
+    const midline = window.innerHeight * 0.5;
+    let nextStep = null;
+
+    steps.forEach((step) => {
+      if (step.getBoundingClientRect().top < midline) {
+        nextStep = step;
+      }
+    });
+
+    // Once the last card nears the top of the screen, show every band again.
+    if (nextStep === steps[steps.length - 1] && nextStep.getBoundingClientRect().bottom < midline * 0.6) {
+      nextStep = null;
+    }
+
+    if (nextStep !== activeStep) {
+      activeStep = nextStep;
+      applyHighlight(activeStep);
+    }
+  }
+
+  function requestUpdate() {
+    if (!updateRequested) {
+      updateRequested = true;
+      window.requestAnimationFrame(updateScrolly);
+    }
+  }
+
+  function setScrollyMode() {
+    scrolly.classList.toggle("is-scrolly", scrollyQuery.matches);
+
+    if (!scrollyQuery.matches) {
+      activeStep = null;
+      applyHighlight(null);
+    }
+
+    requestUpdate();
+  }
+
+  if (scrolly && steps.length > 0) {
+    scrollyQuery.addEventListener("change", setScrollyMode);
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    setScrollyMode();
   }
 
   fetch("data/clean/abs_food_australia_monthly.csv")

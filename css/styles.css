@@ -223,6 +223,11 @@ h2 {
   grid-template-columns: minmax(240px, 0.28fr) minmax(0, 0.72fr);
 }
 
+.dashboard-section .section-copy {
+  position: sticky;
+  top: 6.5rem;
+}
+
 .chart-pair {
   display: grid;
   min-width: 0;
@@ -356,6 +361,116 @@ h2 {
   background: var(--orange);
 }
 
+.price-pill,
+.price-bin-heading {
+  transition: color 260ms ease, background-color 260ms ease, opacity 260ms ease;
+}
+
+.price-pill.is-dimmed {
+  color: #b3ad9f;
+  background: #f1ede4;
+}
+
+.price-bin.is-dimmed .price-bin-heading {
+  opacity: 0.4;
+}
+
+.price-band-steps {
+  display: none;
+}
+
+.price-band-scrolly.is-scrolly {
+  display: grid;
+}
+
+.price-band-scrolly.is-scrolly > * {
+  grid-area: 1 / 1;
+}
+
+.price-band-scrolly.is-scrolly .price-band-graphic {
+  position: sticky;
+  top: 6.5rem;
+  align-self: start;
+}
+
+.price-band-scrolly.is-scrolly .price-band-callout {
+  display: none;
+}
+
+.price-band-scrolly.is-scrolly .price-band-steps {
+  position: relative;
+  z-index: 4;
+  display: block;
+  padding: 72vh 0 85vh;
+  pointer-events: none;
+}
+
+.price-band-step {
+  width: min(46%, 400px);
+  margin: 0 auto 72vh;
+  padding: 1.15rem 1.35rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid #b9b2a3;
+  border-radius: 12px;
+  box-shadow: 0 8px 26px rgb(26 42 33 / 12%);
+  opacity: 0.55;
+  pointer-events: auto;
+  transition: opacity 260ms ease;
+}
+
+.price-band-step:last-child {
+  margin-bottom: 0;
+}
+
+.price-band-step.is-active {
+  opacity: 1;
+}
+
+.price-band-step[data-align="left"] {
+  margin-left: 0;
+}
+
+.price-band-step[data-align="right"] {
+  margin-right: 0;
+}
+
+.price-band-step p {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.step-chip {
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.86em;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.step-chip--falling {
+  color: #fff;
+  background: #2f6f9f;
+}
+
+.step-chip--steady {
+  color: var(--ink);
+  background: #e9e3d7;
+}
+
+.step-chip--rising {
+  color: #3f3215;
+  background: #e9b85c;
+}
+
+.step-chip--fast {
+  color: #fff;
+  background: var(--orange);
+}
+
 .chart-footnote {
   margin: 0.9rem 0 0;
   color: var(--muted);
@@ -453,7 +568,8 @@ footer a {
     grid-row: 2;
   }
 
-  .section-copy {
+  .section-copy,
+  .dashboard-section .section-copy {
     position: static;
   }
 
@@ -531,7 +647,10 @@ footer a {
   .site-nav,
   .nav-links a,
   .nav-links a::after,
-  .price-pill::after {
+  .price-pill,
+  .price-pill::after,
+  .price-bin-heading,
+  .price-band-step {
     transition: none;
   }
 }

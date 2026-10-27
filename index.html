@@ -9,7 +9,7 @@
     />
     <title>Grocery prices and supermarket access</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-    <link rel="stylesheet" href="css/styles.css?v=20" />
+    <link rel="stylesheet" href="css/styles.css?v=21" />
     <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.5.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
@@ -119,14 +119,55 @@
         </div>
         <div class="chart-pair">
           <div class="chart-card price-band-card">
-            <h3>Where each food sits</h3>
-            <p class="chart-kicker">Annual price change in August 2026, 25 detailed categories</p>
-            <div class="price-band-callout">
-              <strong>The same month contained both sharp falls and sharp rises.</strong>
-              <span>Egg prices fell 4.7%, while beef and lamb prices rose 9.4%.</span>
+            <div class="price-band-scrolly" id="price-band-scrolly">
+              <div class="price-band-graphic">
+                <h3>Where each food sits</h3>
+                <p class="chart-kicker">Annual price change in August 2026, 25 detailed categories</p>
+                <div class="price-band-callout">
+                  <strong>The same month contained both sharp falls and sharp rises.</strong>
+                  <span>Egg prices fell 4.7%, while beef and lamb prices rose 9.4%.</span>
+                </div>
+                <div id="price-band-chart" class="price-band-chart" aria-label="Detailed food categories grouped into annual price change bands"></div>
+                <p class="chart-status" id="price-band-chart-status" role="status">Loading price bands…</p>
+              </div>
+              <div class="price-band-steps">
+                <div class="price-band-step" data-bands="falling" data-align="right">
+                  <p>
+                    Only three foods <span class="step-chip step-chip--falling">got cheaper</span>.
+                    Eggs fell furthest, down 4.7%. Pork and other cereal products
+                    slipped just below zero.
+                  </p>
+                </div>
+                <div class="price-band-step" data-bands="steady" data-align="right">
+                  <p>
+                    Ten foods <span class="step-chip step-chip--steady">barely moved</span>,
+                    rising by less than 2%. Fruit, vegetables, seafood and coffee all
+                    sat in this band.
+                  </p>
+                </div>
+                <div class="price-band-step" data-bands="rising" data-align="left">
+                  <p>
+                    Eight foods <span class="step-chip step-chip--rising">rose 2–5%</span>,
+                    close to the overall food rate of 3.0%. Restaurant meals (4.3%)
+                    and soft drinks and juices (4.0%) led this group.
+                  </p>
+                </div>
+                <div class="price-band-step" data-bands="fast" data-align="left">
+                  <p>
+                    Four foods <span class="step-chip step-chip--fast">rose 5% or more</span>.
+                    Beef and veal and lamb and goat both jumped 9.4%, and milk rose
+                    7.7%.
+                  </p>
+                </div>
+                <div class="price-band-step" data-foods="Eggs|Beef and veal|Lamb and goat" data-align="center">
+                  <p>
+                    The same month held both extremes. A 14.1-point gap separated
+                    <span class="step-chip step-chip--falling">eggs</span> from
+                    <span class="step-chip step-chip--fast">beef and lamb</span>.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div id="price-band-chart" class="price-band-chart" aria-label="Detailed food categories grouped into annual price change bands"></div>
-            <p class="chart-status" id="price-band-chart-status" role="status">Loading price bands…</p>
           </div>
           <div class="chart-card compact-card">
             <h3>Typical monthly movement</h3>
@@ -233,7 +274,7 @@
     </footer>
 
     <script src="js/maps.js?v=18"></script>
-    <script src="js/price-bands.js?v=1"></script>
+    <script src="js/price-bands.js?v=2"></script>
     <script src="js/navigation.js?v=1"></script>
   </body>
 </html>
