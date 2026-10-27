@@ -107,6 +107,29 @@
       "transform": [
         {
           "filter": "datum.supermarket === 'IGA'"
+        },
+        {
+          "window": [
+            {
+              "op": "lead",
+              "field": "basket_price",
+              "as": "next_lower_price"
+            }
+          ],
+          "sort": [
+            {
+              "field": "basket_price",
+              "order": "descending"
+            }
+          ]
+        },
+        {
+          "calculate": "datum.next_lower_price == null ? datum.basket_price : max(datum.basket_price, datum.next_lower_price + 1.4)",
+          "as": "label_price"
+        },
+        {
+          "calculate": "datum.state + '  $' + format(datum.basket_price, '.2f')",
+          "as": "label_text"
         }
       ],
       "mark": {
@@ -118,7 +141,7 @@
       },
       "encoding": {
         "text": {
-          "field": "state",
+          "field": "label_text",
           "type": "nominal"
         },
         "color": {
@@ -128,6 +151,10 @@
             "scheme": "tableau10"
           },
           "legend": null
+        },
+        "y": {
+          "field": "label_price",
+          "type": "quantitative"
         }
       }
     }

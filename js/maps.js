@@ -6,7 +6,7 @@ const visualisations = [
   ["#volatility-chart", "#volatility-chart-status", "specs/06-monthly-movement.json"],
   ["#capital-map", "#capital-map-status", "specs/07-capital-map.json?v=2"],
   ["#basket-chart", "#basket-chart-status", "specs/08-basket-comparison.json?v=2"],
-  ["#slope-chart", "#slope-chart-status", "specs/09-slope-chart.json?v=2"],
+  ["#slope-chart", "#slope-chart-status", "specs/09-slope-chart.json?v=3"],
   ["#store-map", "#store-map-status", "specs/10-store-map.json?v=2"],
   ["#access-map", "#access-map-status", "specs/11-access-map.json?v=2"],
 ];
