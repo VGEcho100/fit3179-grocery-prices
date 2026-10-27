@@ -93,7 +93,7 @@
   // Scroll-driven highlighting: each step card dims every pill it does not mention.
   const scrolly = document.querySelector("#price-band-scrolly");
   const steps = scrolly ? Array.from(scrolly.querySelectorAll(".price-band-step")) : [];
-  const scrollyQuery = window.matchMedia("(min-width: 901px) and (min-height: 640px)");
+  const scrollyQuery = window.matchMedia("(min-width: 901px) and (min-height: 500px)");
   let activeStep = null;
   let updateRequested = false;
 

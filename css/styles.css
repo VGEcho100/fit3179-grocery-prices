@@ -442,6 +442,36 @@ h2 {
   line-height: 1.7;
 }
 
+/* Short laptop screens: tighten the pinned chart so it fits below the nav. */
+@media (max-height: 800px) {
+  .price-band-scrolly.is-scrolly .price-band-graphic {
+    top: 5.25rem;
+  }
+
+  .price-band-scrolly.is-scrolly h3 {
+    font-size: 1.2rem;
+  }
+
+  .price-band-scrolly.is-scrolly .chart-kicker {
+    margin-bottom: 0.6rem;
+  }
+
+  .price-band-scrolly.is-scrolly .price-bin-heading {
+    min-height: 0;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .price-band-scrolly.is-scrolly .price-pill-list {
+    gap: 0.28rem;
+  }
+
+  .price-band-scrolly.is-scrolly .price-pill {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.72rem;
+  }
+}
+
 .step-chip {
   padding: 0.12rem 0.5rem;
   border-radius: 999px;
