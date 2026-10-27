@@ -34,9 +34,9 @@ a {
 }
 
 .hero {
-  padding: 0 5vw 4.5rem;
-  background: #1c503d;
-  color: #fffdf7;
+  padding: 0 5vw;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
 }
 
 .site-nav {
@@ -113,9 +113,58 @@ a {
 }
 
 .hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
   max-width: 1240px;
+  min-height: min(72vh, 640px);
   margin: 0 auto;
-  padding-top: 4.5rem;
+  padding: 4rem 0;
+  align-items: center;
+}
+
+.hero-art {
+  margin: 0;
+}
+
+.hero-art svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.hero-axis {
+  stroke: var(--ink);
+  stroke-width: 4;
+}
+
+.hero-line {
+  fill: none;
+  stroke: var(--leaf);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hero-art figcaption {
+  margin-top: 1.2rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.hero-copy {
+  text-align: center;
+}
+
+.hero .eyebrow {
+  margin-bottom: 1.2rem;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
 
 .eyebrow,
@@ -136,57 +185,44 @@ p {
 
 h1 {
   max-width: 900px;
-  margin-bottom: 1.25rem;
+  margin: 0 auto 1.6rem;
   font-family: var(--font-display);
   font-size: clamp(2.7rem, 6vw, 5rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.02;
-}
-
-.lede {
-  max-width: 650px;
-  margin-bottom: 0;
-  color: rgb(255 255 255 / 76%);
-  font-size: clamp(1rem, 1.7vw, 1.3rem);
-}
-
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.5rem;
-  max-width: 1040px;
-  margin: 2.6rem 0 0;
-  padding-top: 1.6rem;
-  border-top: 1px solid rgb(255 255 255 / 22%);
-}
-
-.hero-stats dt {
-  font-family: var(--font-display);
-  font-size: clamp(1.9rem, 3.2vw, 2.7rem);
-  font-weight: 700;
-  line-height: 1.05;
-}
-
-.hero-stats dd {
-  margin: 0.45rem 0 0;
-  color: rgb(255 255 255 / 72%);
-  font-size: 0.92rem;
-  line-height: 1.45;
-}
-
-.lede-small {
-  margin-top: 1rem;
-  color: rgb(255 255 255 / 62%);
-  font-size: 0.98rem;
+  text-wrap: balance;
 }
 
 .byline {
-  margin: 1.4rem 0 0;
-  color: #e9b85c;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.byline span {
+  color: var(--leaf);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.intro {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 4.5rem 0 0;
+}
+
+.intro p {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  line-height: 1.7;
+}
+
+.intro .intro-note {
+  color: var(--muted);
+  font-size: 1rem;
 }
 
 main {
@@ -592,8 +628,9 @@ footer a {
     display: grid;
   }
 
-  .hero-stats {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .hero-grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
   }
 }
 

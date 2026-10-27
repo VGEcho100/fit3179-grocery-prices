@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" />
-    <link rel="stylesheet" href="css/styles.css?v=29" />
+    <link rel="stylesheet" href="css/styles.css?v=32" />
     <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.5.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
@@ -35,44 +35,38 @@
 
     <header class="hero">
       <div class="hero-grid" id="top">
+        <figure class="hero-art">
+          <svg viewBox="0 0 600 320" role="img" aria-labelledby="hero-art-caption">
+            <line class="hero-axis" x1="0" y1="251.6" x2="600" y2="251.6" />
+            <path class="hero-line" d="M12.0,235.4 C13.0,235.3 16.0,234.9 18.1,234.7 C20.1,234.5 22.1,234.5 24.1,234.2 C26.1,233.9 28.2,233.1 30.2,232.8 C32.2,232.6 34.2,233.0 36.3,232.8 C38.3,232.7 40.3,232.4 42.3,231.9 C44.3,231.3 46.4,230.4 48.4,229.5 C50.4,228.7 52.4,227.9 54.4,226.7 C56.5,225.5 58.5,224.4 60.5,222.5 C62.5,220.5 64.5,218.6 66.6,215.0 C68.6,211.4 70.6,205.7 72.6,200.9 C74.7,196.0 76.7,189.8 78.7,185.8 C80.7,181.9 82.7,179.5 84.8,177.4 C86.8,175.3 88.8,173.8 90.8,173.2 C92.8,172.5 94.9,174.3 96.9,173.6 C98.9,172.9 100.9,169.9 102.9,168.9 C105.0,167.9 107.0,169.1 109.0,167.5 C111.0,166.0 113.1,161.8 115.1,159.5 C117.1,157.3 119.1,155.2 121.1,153.9 C123.2,152.6 125.2,150.6 127.2,151.5 C129.2,152.5 131.2,156.4 133.3,159.5 C135.3,162.7 137.3,166.4 139.3,170.3 C141.3,174.3 143.4,178.9 145.4,183.0 C147.4,187.2 149.4,191.5 151.5,195.2 C153.5,199.0 155.5,202.6 157.5,205.6 C159.5,208.6 161.6,211.3 163.6,213.1 C165.6,214.9 167.6,214.6 169.6,216.4 C171.7,218.2 173.7,221.7 175.7,223.9 C177.7,226.1 179.7,226.6 181.8,229.5 C183.8,232.5 185.8,238.0 187.8,241.8 C189.9,245.5 191.9,249.3 193.9,252.1 C195.9,254.9 197.9,258.1 200.0,258.7 C202.0,259.2 204.0,256.7 206.0,255.4 C208.0,254.0 210.1,251.9 212.1,250.7 C214.1,249.4 216.1,248.3 218.1,247.9 C220.2,247.4 222.2,248.3 224.2,247.9 C226.2,247.4 228.3,246.4 230.3,245.0 C232.3,243.7 234.3,242.8 236.3,239.9 C238.4,237.0 240.4,231.7 242.4,227.7 C244.4,223.6 246.4,219.6 248.5,215.4 C250.5,211.3 252.5,206.3 254.5,202.8 C256.5,199.2 258.6,197.4 260.6,194.3 C262.6,191.2 264.6,186.5 266.7,184.0 C268.7,181.5 270.7,180.6 272.7,179.3 C274.7,177.9 276.8,179.6 278.8,176.0 C280.8,172.4 282.8,166.3 284.8,157.7 C286.9,149.0 288.9,136.2 290.9,124.3 C292.9,112.4 294.9,96.5 297.0,86.2 C299.0,76.0 301.0,69.1 303.0,62.7 C305.1,56.4 307.1,51.2 309.1,48.2 C311.1,45.1 313.1,45.0 315.2,44.4 C317.2,43.8 319.2,43.6 321.2,44.4 C323.2,45.3 325.3,49.3 327.3,49.6 C329.3,49.9 331.3,46.9 333.3,46.3 C335.4,45.7 337.4,46.5 339.4,45.8 C341.4,45.1 343.5,42.6 345.5,42.1 C347.5,41.5 349.5,41.1 351.5,42.5 C353.6,44.0 355.6,45.8 357.6,51.0 C359.6,56.2 361.6,64.7 363.7,74.0 C365.7,83.3 367.7,97.6 369.7,106.9 C371.7,116.2 373.8,123.0 375.8,129.9 C377.8,136.9 379.8,143.4 381.9,148.7 C383.9,154.0 385.9,157.5 387.9,161.9 C389.9,166.3 392.0,171.4 394.0,175.0 C396.0,178.7 398.0,180.7 400.0,184.0 C402.1,187.3 404.1,191.2 406.1,194.8 C408.1,198.4 410.1,202.4 412.2,205.6 C414.2,208.7 416.2,211.3 418.2,213.6 C420.3,215.8 422.3,216.0 424.3,219.2 C426.3,222.4 428.3,228.4 430.4,232.8 C432.4,237.2 434.4,241.8 436.4,245.5 C438.4,249.2 440.5,252.1 442.5,254.9 C444.5,257.7 446.5,260.6 448.5,262.4 C450.6,264.2 452.6,264.6 454.6,265.7 C456.6,266.8 458.7,269.6 460.7,269.0 C462.7,268.5 464.7,264.0 466.7,262.4 C468.8,260.9 470.8,260.9 472.8,259.6 C474.8,258.3 476.8,255.7 478.9,254.4 C480.9,253.2 482.9,252.8 484.9,252.1 C486.9,251.4 489.0,250.7 491.0,250.2 C493.0,249.7 495.0,249.5 497.1,249.3 C499.1,249.0 501.1,249.8 503.1,248.8 C505.1,247.8 507.2,245.9 509.2,243.2 C511.2,240.4 513.2,236.3 515.2,232.4 C517.3,228.4 519.3,222.9 521.3,219.2 C523.3,215.5 525.3,212.0 527.4,210.3 C529.4,208.6 531.4,208.8 533.4,208.9 C535.5,208.9 537.5,210.0 539.5,210.7 C541.5,211.4 543.5,212.4 545.6,213.1 C547.6,213.8 549.6,214.4 551.6,215.0 C553.6,215.5 555.7,218.1 557.7,216.4 C559.7,214.7 561.7,209.6 563.7,204.6 C565.8,199.7 567.8,193.1 569.8,186.8 C571.8,180.4 573.9,170.1 575.9,166.6 C577.9,163.1 579.9,165.6 581.9,165.6 C584.0,165.7 587.0,166.8 588.0,167.0" />
+          </svg>
+          <figcaption id="hero-art-caption">
+            Dairy prices compared with a year earlier, September 2018 to August
+            2026, averaged over three months. The black line is no change.
+          </figcaption>
+        </figure>
         <div class="hero-copy">
-          <p class="eyebrow">FIT3179 DATA VISUALISATION 2</p>
+          <p class="eyebrow">Grocery prices in Australia</p>
           <h1>Same trolley, different bill</h1>
-          <p class="lede">
-            Australian food prices rose 3.0% in the year to August 2026. Hardly
-            anyone's shopping went up by exactly that much, though. What you pay
-            depends on what goes in the trolley, which chain you shop at, and
-            whether your suburb has a supermarket at all.
-          </p>
-          <p class="lede lede-small">
-            Most of the price data comes from the Consumer Price Index (CPI), which
-            the ABS uses to track how the cost of a fixed set of household goods
-            changes over time.
-          </p>
-          <dl class="hero-stats">
-            <div>
-              <dt>3.0%</dt>
-              <dd>food price rise, year to August 2026</dd>
-            </div>
-            <div>
-              <dt>41%</dt>
-              <dd>of food CPI is meals out and takeaway</dd>
-            </div>
-            <div>
-              <dt>$17–$34</dt>
-              <dd>extra for the same basket at the dearest chain, depending on the state</dd>
-            </div>
-            <div>
-              <dt>557,000</dt>
-              <dd>Melburnians live in an area with no supermarket</dd>
-            </div>
-          </dl>
-          <p class="byline">By Jin XIE · October 2026</p>
+          <p class="byline">By <span>Jin XIE</span> · October 2026</p>
         </div>
       </div>
     </header>
 
     <main>
+      <section class="intro">
+        <p>
+          Australian food prices rose 3.0% in the year to August 2026. Hardly
+          anyone's shopping went up by exactly that much, though. What you pay
+          depends on what goes in the trolley, which chain you shop at, and
+          whether your suburb has a supermarket at all.
+        </p>
+        <p class="intro-note">
+          Most of the price data comes from the Consumer Price Index (CPI), which
+          the ABS uses to track how the cost of a fixed set of household goods
+          changes over time.
+        </p>
+      </section>
       <section class="story-section" id="trend">
         <div class="section-copy">
           <p class="section-number">1. PRICE TREND</p>
