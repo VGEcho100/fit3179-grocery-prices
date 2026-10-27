@@ -3,12 +3,20 @@
   "width": 720,
   "height": 510,
   "projection": {
-    "type": "mercator",
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ],
     "center": [
-      134,
+      2,
       -27.5
     ],
-    "scale": 640
+    "scale": 800
   },
   "layer": [
     {
@@ -229,11 +237,101 @@
               "latitude"
             ]
           }
+        },
+        {
+          "filter": "datum.geography !== 'Canberra'"
         }
       ],
       "mark": {
         "type": "text",
         "dy": -24,
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#17211b"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "geography"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/clean/abs_food_capital_city_monthly.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.measure === 'annual_percent_change' && toDate(datum.date) === toDate('2026-08-01')"
+        },
+        {
+          "lookup": "geography",
+          "from": {
+            "data": {
+              "values": [
+                {
+                  "city": "Sydney",
+                  "longitude": 151.2093,
+                  "latitude": -33.8688
+                },
+                {
+                  "city": "Melbourne",
+                  "longitude": 144.9631,
+                  "latitude": -37.8136
+                },
+                {
+                  "city": "Brisbane",
+                  "longitude": 153.0251,
+                  "latitude": -27.4698
+                },
+                {
+                  "city": "Adelaide",
+                  "longitude": 138.6007,
+                  "latitude": -34.9285
+                },
+                {
+                  "city": "Perth",
+                  "longitude": 115.8605,
+                  "latitude": -31.9505
+                },
+                {
+                  "city": "Hobart",
+                  "longitude": 147.3272,
+                  "latitude": -42.8821
+                },
+                {
+                  "city": "Darwin",
+                  "longitude": 130.8456,
+                  "latitude": -12.4634
+                },
+                {
+                  "city": "Canberra",
+                  "longitude": 149.13,
+                  "latitude": -35.2809
+                }
+              ]
+            },
+            "key": "city",
+            "fields": [
+              "longitude",
+              "latitude"
+            ]
+          }
+        },
+        {
+          "filter": "datum.geography === 'Canberra'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": 22,
         "fontSize": 11,
         "fontWeight": 700,
         "color": "#17211b"
