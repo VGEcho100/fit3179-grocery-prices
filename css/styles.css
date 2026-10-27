@@ -36,6 +36,21 @@ a {
   color: #fffdf7;
 }
 
+.site-nav {
+  position: sticky;
+  z-index: 1000;
+  top: 0;
+  padding: 0 5vw;
+  color: #fffdf7;
+  background: rgb(28 80 61 / 96%);
+  backdrop-filter: blur(10px);
+  transition: box-shadow 180ms ease;
+}
+
+.site-nav.is-scrolled {
+  box-shadow: 0 6px 18px rgb(16 50 37 / 18%);
+}
+
 .nav-shell {
   display: flex;
   max-width: 1240px;
@@ -59,13 +74,39 @@ a {
 }
 
 .nav-links a {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 0.2rem 0;
   color: rgb(255 255 255 / 76%);
   text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.nav-links a::after {
+  position: absolute;
+  right: 0;
+  bottom: -1.3rem;
+  left: 0;
+  height: 3px;
+  background: #e9b85c;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 180ms ease;
 }
 
 .nav-links a:hover,
-.nav-links a:focus-visible {
+.nav-links a:focus-visible,
+.nav-links a.is-active {
   color: #fff;
+}
+
+.nav-links a.is-active::after {
+  transform: scaleX(1);
+}
+
+.story-section {
+  scroll-margin-top: 5.5rem;
 }
 
 .hero-grid {
@@ -308,12 +349,35 @@ footer a {
 }
 
 @media (max-width: 620px) {
+  .site-nav {
+    padding: 0 1rem;
+  }
+
   .hero {
     padding: 0 1.25rem 4rem;
   }
 
-  .nav-links {
+  .nav-shell {
+    padding: 0.85rem 0;
+  }
+
+  .brand {
     display: none;
+  }
+
+  .nav-links {
+    width: 100%;
+    gap: 1.15rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links a::after {
+    bottom: -0.95rem;
   }
 
   main {
@@ -329,5 +393,17 @@ footer a {
   .wide-card .chart,
   .compact-card .chart {
     min-height: 460px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .site-nav,
+  .nav-links a,
+  .nav-links a::after {
+    transition: none;
   }
 }
