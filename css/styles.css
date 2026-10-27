@@ -127,24 +127,19 @@ a {
   margin: 0;
 }
 
-.hero-art svg {
+.store-collage {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.store-collage img {
   display: block;
   width: 100%;
   height: auto;
-  overflow: visible;
-}
-
-.hero-axis {
-  stroke: var(--ink);
-  stroke-width: 4;
-}
-
-.hero-line {
-  fill: none;
-  stroke: var(--leaf);
-  stroke-width: 5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 .hero-art figcaption {
@@ -629,6 +624,14 @@ footer p {
 
 footer a {
   color: #fffdf7;
+}
+
+.footer-title--spaced {
+  margin-top: 1.2rem;
+}
+
+.footer-credits {
+  max-width: 760px;
 }
 
 .footer-about {
