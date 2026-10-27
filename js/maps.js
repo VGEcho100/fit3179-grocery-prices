@@ -2,7 +2,7 @@ const visualisations = [
   ["#trend-chart", "#trend-chart-status", "specs/01-trend.json?v=2"],
   ["#composition-chart", "#composition-chart-status", "specs/02-waffle.json"],
   ["#category-heatmap", "#category-heatmap-status", "specs/03-heatmap.json?v=2"],
-  ["#bump-chart", "#bump-chart-status", "specs/04-bump-chart.json?v=17"],
+  ["#bump-chart", "#bump-chart-status", "specs/04-bump-chart.json?v=19"],
   ["#volatility-chart", "#volatility-chart-status", "specs/06-monthly-movement.json"],
   ["#capital-map", "#capital-map-status", "specs/07-capital-map.json?v=2"],
   ["#basket-chart", "#basket-chart-status", "specs/08-basket-comparison.json?v=2"],

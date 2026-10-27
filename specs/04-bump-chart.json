@@ -147,8 +147,29 @@
     {
       "mark": {
         "type": "line",
-        "strokeWidth": 3,
-        "opacity": 0.72
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "order": {
+          "field": "year",
+          "type": "quantitative"
+        },
+        "opacity": {
+          "condition": {
+            "param": "focusGroup",
+            "empty": true,
+            "value": 0.85
+          },
+          "value": 0.12
+        },
+        "strokeWidth": {
+          "condition": {
+            "param": "focusGroup",
+            "empty": false,
+            "value": 4.5
+          },
+          "value": 3
+        }
       }
     },
     {
@@ -157,6 +178,30 @@
         "size": 280,
         "stroke": "#fffdf8",
         "strokeWidth": 2
+      },
+      "params": [
+        {
+          "name": "focusGroup",
+          "select": {
+            "type": "point",
+            "fields": [
+              "category"
+            ],
+            "on": "pointermove",
+            "clear": "pointerout",
+            "nearest": true
+          }
+        }
+      ],
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "focusGroup",
+            "empty": true,
+            "value": 1
+          },
+          "value": 0.15
+        }
       }
     },
     {
@@ -171,6 +216,14 @@
         "text": {
           "field": "inflation_rank",
           "type": "ordinal"
+        },
+        "opacity": {
+          "condition": {
+            "param": "focusGroup",
+            "empty": true,
+            "value": 1
+          },
+          "value": 0.2
         }
       }
     },
@@ -193,6 +246,14 @@
         "text": {
           "field": "end_label",
           "type": "nominal"
+        },
+        "opacity": {
+          "condition": {
+            "param": "focusGroup",
+            "empty": true,
+            "value": 1
+          },
+          "value": 0.25
         }
       }
     }
