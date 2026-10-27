@@ -26,6 +26,14 @@ MEASURE_NAMES = {
     "Change in Contribution to All groups CPI Index Number": "change_in_contribution",
 }
 
+# The web page only reads these rows and columns; the full file keeps provenance.
+WEB_MEASURES = [
+    "annual_percent_change",
+    "monthly_percent_change",
+    "contribution_to_all_groups_index",
+]
+WEB_COLUMNS = ["date", "category", "measure", "value"]
+
 CITIES = [
     "Sydney",
     "Melbourne",
@@ -219,7 +227,10 @@ def main() -> None:
     choice = build_choice_states()
     validate(australia, cities, choice)
 
-    australia.to_csv(CLEAN / "abs_food_australia_monthly.csv", index=False)
+    australia.to_csv(CLEAN / "abs_food_australia_monthly_full.csv", index=False)
+    australia.loc[australia["measure"].isin(WEB_MEASURES), WEB_COLUMNS].to_csv(
+        CLEAN / "abs_food_australia_monthly.csv", index=False
+    )
     cities.to_csv(CLEAN / "abs_food_capital_city_monthly.csv", index=False)
     choice.to_csv(CLEAN / "choice_state_basket_jun2026.csv", index=False)
 

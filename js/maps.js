@@ -24,6 +24,8 @@ async function embedChart(selector, statusSelector, specUrl) {
 
   try {
     const spec = await loadSpec(specUrl);
+    // Wait for the web fonts so Vega measures label widths with the right typeface.
+    await document.fonts.ready;
     await vegaEmbed(selector, spec, {
       actions: false,
       renderer: "svg",

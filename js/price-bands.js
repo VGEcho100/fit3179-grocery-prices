@@ -72,11 +72,14 @@
     requestUpdate();
   }
 
-  vegaEmbed("#price-band-chart", "specs/05-price-bands.json", {
-    actions: false,
-    renderer: "svg",
-    tooltip: { theme: "light" },
-  })
+  document.fonts.ready
+    .then(() =>
+      vegaEmbed("#price-band-chart", "specs/05-price-bands.json", {
+        actions: false,
+        renderer: "svg",
+        tooltip: { theme: "light" },
+      }),
+    )
     .then((result) => {
       view = result.view;
       status.textContent = "";

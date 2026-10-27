@@ -162,7 +162,7 @@
     {
       "mark": {
         "type": "text",
-        "font": "Arial",
+        "font": "Source Sans 3",
         "fontSize": 11,
         "fontWeight": 700,
         "color": "#fffdf8"
@@ -185,7 +185,7 @@
         "align": "left",
         "baseline": "middle",
         "dx": 16,
-        "font": "Arial",
+        "font": "Source Sans 3",
         "fontSize": 12,
         "fontWeight": 700
       },
@@ -202,7 +202,7 @@
     "view": {
       "stroke": null
     },
-    "font": "Arial",
+    "font": "Source Sans 3",
     "axis": {
       "labelColor": "#5e6c63",
       "titleColor": "#17211b",

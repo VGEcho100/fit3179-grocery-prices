@@ -138,11 +138,12 @@ Optional fourth map: bivariate choropleth combining low supermarket access with 
 
 ## Prepared clean outputs
 
-- `data/clean/abs_food_australia_monthly.csv`: 33 food categories from ABS Table 3, in long format. Measures include index number, monthly and annual percentage change, contribution to the All groups CPI index, and change in contribution. Coverage is September 2017 to August 2026 where each series is available.
+- `data/clean/abs_food_australia_monthly_full.csv`: 33 food categories from ABS Table 3, in long format. Measures include index number, monthly and annual percentage change, contribution to the All groups CPI index, and change in contribution. Coverage is September 2017 to August 2026 where each series is available.
+- `data/clean/abs_food_australia_monthly.csv`: the web copy loaded by the charts. It keeps only `date`, `category`, `measure` and `value`, and only the annual change, monthly change and contribution measures, which cuts the download from about 2.4 MB to under 0.4 MB.
 - `data/clean/abs_food_capital_city_monthly.csv`: the overall Food and non-alcoholic beverages group for all eight capital cities, combining Table 10 index numbers and Table 11 annual percentage changes. Coverage is April 2024 to August 2026 where each series is available.
 - `data/clean/choice_state_basket_jun2026.csv`: June 2026 state-level prices for Aldi, Woolworths, Coles and IGA for the 17-item basket with specials. Aldi is explicitly marked unavailable in the Northern Territory and Tasmania.
 
-The reproducible cleaning script is `scripts/prepare_grocery_data.py`. It keeps ABS series IDs and source URLs in every output row.
+The reproducible cleaning script is `scripts/prepare_grocery_data.py`. The full outputs keep ABS series IDs and source URLs in every row.
 
 ## Prepared spatial outputs
 

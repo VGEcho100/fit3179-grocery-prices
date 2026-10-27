@@ -8,6 +8,8 @@
   --leaf-dark: #164936;
   --orange: #df6d3a;
   --shadow: 0 5px 18px rgb(26 42 33 / 7%);
+  --font-body: "Source Sans 3", Arial, Helvetica, sans-serif;
+  --font-display: Fraunces, Georgia, "Times New Roman", serif;
 }
 
 * {
@@ -22,8 +24,9 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.55;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
 a {
@@ -134,9 +137,10 @@ p {
 h1 {
   max-width: 900px;
   margin-bottom: 1.25rem;
+  font-family: var(--font-display);
   font-size: clamp(2.7rem, 6vw, 5rem);
   font-weight: 700;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.02em;
   line-height: 1.02;
 }
 
@@ -145,6 +149,14 @@ h1 {
   margin-bottom: 0;
   color: rgb(255 255 255 / 76%);
   font-size: clamp(1rem, 1.7vw, 1.3rem);
+}
+
+.byline {
+  margin: 1.4rem 0 0;
+  color: #e9b85c;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 main {
@@ -186,9 +198,10 @@ main {
 
 h2 {
   margin-bottom: 1.2rem;
+  font-family: var(--font-display);
   font-size: clamp(1.8rem, 3vw, 2.8rem);
   font-weight: 700;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.01em;
   line-height: 1.1;
 }
 
@@ -240,6 +253,7 @@ h2 {
 
 .chart-card h3 {
   margin-bottom: 0.35rem;
+  font-family: var(--font-display);
   font-size: 1.45rem;
   font-weight: 700;
 }
@@ -334,7 +348,7 @@ h2 {
 
 .price-band-step p {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
   font-size: 1.08rem;
   line-height: 1.7;
 }
@@ -357,7 +371,7 @@ h2 {
 .step-chip {
   padding: 0.12rem 0.5rem;
   border-radius: 999px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.86em;
   font-weight: 700;
   white-space: nowrap;
@@ -450,6 +464,27 @@ footer p {
 
 footer a {
   color: #fffdf7;
+}
+
+.footer-about {
+  max-width: 340px;
+}
+
+.footer-title {
+  margin-bottom: 0.5rem;
+  color: #fffdf7;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.footer-sources ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, auto));
+  gap: 0.35rem 2.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 @media (max-width: 900px) {

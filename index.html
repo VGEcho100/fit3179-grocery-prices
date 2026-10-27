@@ -9,7 +9,10 @@
     />
     <title>Grocery prices and supermarket access</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-    <link rel="stylesheet" href="css/styles.css?v=24" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" />
+    <link rel="stylesheet" href="css/styles.css?v=25" />
     <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.5.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
@@ -38,6 +41,7 @@
             This project looks at how food prices changed across Australia and how
             supermarket access differs across Greater Melbourne.
           </p>
+          <p class="byline">By Jin XIE · October 2026</p>
         </div>
       </div>
     </header>
@@ -263,18 +267,29 @@
 
     <footer>
       <div class="footer-inner">
-        <p>
-          Sources:
-          <a href="https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/monthly-consumer-price-index-indicator/latest-release" target="_blank" rel="noopener noreferrer">ABS Consumer Price Index</a>,
-          ABS regional population and income,
-          <a href="https://www.choice.com.au/shopping/everyday-shopping/supermarkets/articles/cheapest-groceries-australia" target="_blank" rel="noopener noreferrer">CHOICE supermarket basket survey</a>, and
-          <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>.
-        </p>
+        <div class="footer-about">
+          <p class="footer-title">About this page</p>
+          <p>
+            Created by Jin XIE for FIT3179 Data Visualisation 2, Monash University.
+            Last updated 27 October 2026.
+          </p>
+        </div>
+        <div class="footer-sources">
+          <p class="footer-title">Data sources</p>
+          <ul>
+            <li><a href="https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/monthly-consumer-price-index-indicator/latest-release" target="_blank" rel="noopener noreferrer">ABS Consumer Price Index</a>, August 2026</li>
+            <li><a href="https://www.choice.com.au/shopping/everyday-shopping/supermarkets/articles/cheapest-groceries-australia" target="_blank" rel="noopener noreferrer">CHOICE supermarket basket survey</a>, June 2026</li>
+            <li><a href="https://geo.abs.gov.au/arcgis/rest/services/Hosted/SA2_Regional_Population_2025/FeatureServer/3" target="_blank" rel="noopener noreferrer">ABS regional population by SA2</a>, 30 June 2025</li>
+            <li><a href="https://services-ap1.arcgis.com/ypkPEy1AmwPKGNNv/arcgis/rest/services/SA2_income_DbR_Nov25/FeatureServer/0" target="_blank" rel="noopener noreferrer">ABS household income by SA2</a>, 2021</li>
+            <li><a href="https://geo.abs.gov.au/arcgis/rest/services/ASGS2021/SA2/FeatureServer/1" target="_blank" rel="noopener noreferrer">ABS SA2 boundaries</a>, ASGS 2021</li>
+            <li>Supermarket locations &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a> (ODbL), 11 October 2026</li>
+          </ul>
+        </div>
       </div>
     </footer>
 
-    <script src="js/maps.js?v=19"></script>
-    <script src="js/price-bands.js?v=4"></script>
+    <script src="js/maps.js?v=20"></script>
+    <script src="js/price-bands.js?v=5"></script>
     <script src="js/navigation.js?v=1"></script>
   </body>
 </html>
