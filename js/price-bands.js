@@ -1,120 +1,30 @@
 (() => {
-  const chart = document.querySelector("#price-band-chart");
   const status = document.querySelector("#price-band-chart-status");
+  const scrolly = document.querySelector("#price-band-scrolly");
 
-  if (!chart || !status) {
+  if (!status || !scrolly) {
     return;
   }
 
-  const excludedCategories = new Set([
-    "Food and non-alcoholic beverages",
-    "Bread and cereal products",
-    "Meat and seafoods",
-    "Dairy and related products",
-    "Fruit and vegetables",
-    "Food products n.e.c.",
-    "Meals out and take away foods",
-    "Non-alcoholic beverages",
-  ]);
-
-  const bands = [
-    {
-      key: "falling",
-      title: "Prices fell",
-      range: "Below 0%",
-      includes: (value) => value < 0,
-    },
-    {
-      key: "steady",
-      title: "Small change",
-      range: "0–2%",
-      includes: (value) => value >= 0 && value < 2,
-    },
-    {
-      key: "rising",
-      title: "Moderate rise",
-      range: "2–5%",
-      includes: (value) => value >= 2 && value < 5,
-    },
-    {
-      key: "fast",
-      title: "Fastest rise",
-      range: "5% or more",
-      includes: (value) => value >= 5,
-    },
-  ];
-
-  function makePill(row, bandKey) {
-    const item = document.createElement("li");
-    const direction = row.value < 0 ? "fell" : "rose";
-    const value = Math.abs(row.value).toFixed(1);
-
-    item.className = `price-pill price-pill--${bandKey}`;
-    item.dataset.band = bandKey;
-    item.dataset.category = row.category;
-    item.tabIndex = 0;
-    item.textContent = row.category;
-    item.dataset.tooltip = `${direction} ${value}%`;
-    item.setAttribute("aria-label", `${row.category}: ${direction} ${value}%`);
-    return item;
-  }
-
-  function render(rows) {
-    const grid = document.createElement("div");
-    grid.className = "price-band-grid";
-
-    bands.forEach((band) => {
-      const group = document.createElement("section");
-      const heading = document.createElement("h4");
-      const title = document.createElement("strong");
-      const range = document.createElement("span");
-      const list = document.createElement("ul");
-      const matches = rows
-        .filter((row) => band.includes(row.value))
-        .sort((a, b) => b.value - a.value);
-
-      group.className = "price-bin";
-      heading.className = "price-bin-heading";
-      title.textContent = band.title;
-      range.textContent = `${band.range} · ${matches.length} foods`;
-      list.className = "price-pill-list";
-
-      heading.append(title, range);
-      matches.forEach((row) => list.append(makePill(row, band.key)));
-      group.append(heading, list);
-      grid.append(group);
-    });
-
-    chart.replaceChildren(grid);
-    status.textContent = "";
-    applyHighlight(activeStep);
-  }
-
-  // Scroll-driven highlighting: each step card dims every pill it does not mention.
-  const scrolly = document.querySelector("#price-band-scrolly");
-  const steps = scrolly ? Array.from(scrolly.querySelectorAll(".price-band-step")) : [];
+  // Scroll-driven highlighting: each step card sets the Vega-Lite params that
+  // decide which pills keep their colour. Everything else is dimmed.
+  const steps = Array.from(scrolly.querySelectorAll(".price-band-step"));
   const scrollyQuery = window.matchMedia("(min-width: 901px) and (min-height: 500px)");
+  let view = null;
   let activeStep = null;
   let updateRequested = false;
 
   function applyHighlight(step) {
-    const bandKeys = step?.dataset.bands ? step.dataset.bands.split("|") : [];
-    const foods = step?.dataset.foods ? step.dataset.foods.split("|") : [];
-
-    chart.querySelectorAll(".price-bin").forEach((group) => {
-      let groupHasMatch = false;
-
-      group.querySelectorAll(".price-pill").forEach((pill) => {
-        const isMatch =
-          !step || bandKeys.includes(pill.dataset.band) || foods.includes(pill.dataset.category);
-        pill.classList.toggle("is-dimmed", !isMatch);
-        groupHasMatch = groupHasMatch || isMatch;
-      });
-
-      group.classList.toggle("is-dimmed", !groupHasMatch);
-    });
-
     steps.forEach((item) => item.classList.toggle("is-active", item === step));
+
+    if (!view) {
+      return;
+    }
+
+    view
+      .signal("focusBands", step ? step.dataset.bands || "" : "all")
+      .signal("focusFoods", step ? step.dataset.foods || "" : "")
+      .runAsync();
   }
 
   function updateScrolly() {
@@ -162,32 +72,25 @@
     requestUpdate();
   }
 
-  if (scrolly && steps.length > 0) {
+  vegaEmbed("#price-band-chart", "specs/05-price-bands.json", {
+    actions: false,
+    renderer: "svg",
+    tooltip: { theme: "light" },
+  })
+    .then((result) => {
+      view = result.view;
+      status.textContent = "";
+      applyHighlight(activeStep);
+    })
+    .catch((error) => {
+      console.error(error);
+      status.textContent = "The price-band view could not be loaded.";
+    });
+
+  if (steps.length > 0) {
     scrollyQuery.addEventListener("change", setScrollyMode);
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);
     setScrollyMode();
   }
-
-  fetch("data/clean/abs_food_australia_monthly.csv")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Could not load price data: HTTP ${response.status}`);
-      }
-      return response.text();
-    })
-    .then((text) => vega.read(text, { type: "csv", parse: { value: "number" } }))
-    .then((rows) =>
-      rows.filter(
-        (row) =>
-          row.measure === "annual_percent_change" &&
-          row.date === "2026-08-01" &&
-          !excludedCategories.has(row.category),
-      ),
-    )
-    .then(render)
-    .catch((error) => {
-      console.error(error);
-      status.textContent = "The price-band view could not be loaded.";
-    });
 })();

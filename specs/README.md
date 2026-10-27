@@ -6,7 +6,7 @@ Each visualisation used on the public page has a separate, human-readable Vega-L
 2. [`02-waffle.json`](02-waffle.json) - August 2026 food-category shares of CPI contribution as a waffle chart, split into eating out and groceries.
 3. [`03-heatmap.json`](03-heatmap.json) - detailed category inflation heatmap.
 4. [`04-bump-chart.json`](04-bump-chart.json) - annual inflation ranking changes.
-5. [`05-lollipop.json`](05-lollipop.json) - latest detailed category changes.
+5. [`05-price-bands.json`](05-price-bands.json) - August 2026 detailed foods grouped into annual price-change bands, with scroll-driven highlighting.
 6. [`06-monthly-movement.json`](06-monthly-movement.json) - average absolute monthly price movement by category.
 7. [`07-capital-map.json`](07-capital-map.json) - capital-city food inflation map.
 8. [`08-basket-comparison.json`](08-basket-comparison.json) - state supermarket basket ranges.

@@ -1,0 +1,359 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 800,
+  "height": 430,
+  "params": [
+    {
+      "name": "focusBands",
+      "value": "all"
+    },
+    {
+      "name": "focusFoods",
+      "value": ""
+    }
+  ],
+  "data": {
+    "url": "data/clean/abs_food_australia_monthly.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.measure === 'annual_percent_change' && datum.date === '2026-08-01' && indexof([\"Food and non-alcoholic beverages\",\"Bread and cereal products\",\"Meat and seafoods\",\"Dairy and related products\",\"Fruit and vegetables\",\"Food products n.e.c.\",\"Meals out and take away foods\",\"Non-alcoholic beverages\"], datum.category) < 0"
+    },
+    {
+      "calculate": "toNumber(datum.value)",
+      "as": "change"
+    },
+    {
+      "calculate": "datum.change < 0 ? 'falling' : datum.change < 2 ? 'steady' : datum.change < 5 ? 'rising' : 'fast'",
+      "as": "band"
+    },
+    {
+      "calculate": "indexof(['falling', 'steady', 'rising', 'fast'], datum.band)",
+      "as": "band_index"
+    },
+    {
+      "calculate": "['Prices fell', 'Small change', 'Moderate rise', 'Fastest rise'][datum.band_index]",
+      "as": "band_title"
+    },
+    {
+      "calculate": "['Below 0%', '0–2%', '2–5%', '5% or more'][datum.band_index]",
+      "as": "band_range"
+    },
+    {
+      "calculate": "(datum.change < 0 ? 'Fell ' : 'Rose ') + format(abs(datum.change), '.1f') + '%'",
+      "as": "change_label"
+    },
+    {
+      "calculate": "length(datum.category) <= 23 ? -1 : lastindexof(substring(datum.category, 0, 24), ' ')",
+      "as": "wrap_at"
+    },
+    {
+      "calculate": "datum.wrap_at < 0 ? datum.category : substring(datum.category, 0, datum.wrap_at) + '\\n' + substring(datum.category, datum.wrap_at + 1)",
+      "as": "pill_label"
+    },
+    {
+      "calculate": "datum.wrap_at < 0 ? 28 : 44",
+      "as": "pill_height"
+    },
+    {
+      "calculate": "datum.pill_height + 7",
+      "as": "pill_step"
+    },
+    {
+      "window": [
+        {
+          "op": "sum",
+          "field": "pill_step",
+          "as": "stack_end"
+        }
+      ],
+      "groupby": [
+        "band"
+      ],
+      "sort": [
+        {
+          "field": "change",
+          "order": "descending"
+        },
+        {
+          "field": "category",
+          "order": "ascending"
+        }
+      ],
+      "frame": [
+        null,
+        0
+      ],
+      "ignorePeers": true
+    },
+    {
+      "calculate": "datum.band_index * 200",
+      "as": "x0"
+    },
+    {
+      "calculate": "datum.x0 + 186",
+      "as": "x1"
+    },
+    {
+      "calculate": "60 + datum.stack_end - datum.pill_step",
+      "as": "y0"
+    },
+    {
+      "calculate": "datum.y0 + datum.pill_height",
+      "as": "y1"
+    },
+    {
+      "calculate": "focusBands === 'all' || indexof(focusBands, datum.band) >= 0 || indexof('|' + focusFoods + '|', '|' + datum.category + '|') >= 0",
+      "as": "is_on"
+    },
+    {
+      "calculate": "!datum.is_on ? '#f1ede4' : ['#2f6f9f', '#e9e3d7', '#e9b85c', '#df6d3a'][datum.band_index]",
+      "as": "pill_fill"
+    },
+    {
+      "calculate": "!datum.is_on ? '#b3ad9f' : ['#ffffff', '#17211b', '#3f3215', '#ffffff'][datum.band_index]",
+      "as": "pill_ink"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          800
+        ],
+        "nice": false,
+        "zero": false
+      },
+      "axis": null
+    },
+    "y": {
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          430
+        ],
+        "nice": false,
+        "zero": false,
+        "reverse": true
+      },
+      "axis": null
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 14,
+        "cursor": "help"
+      },
+      "encoding": {
+        "x": {
+          "field": "x0"
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0"
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "pill_fill",
+          "type": "nominal",
+          "scale": null
+        },
+        "tooltip": [
+          {
+            "field": "category",
+            "type": "nominal",
+            "title": "Food"
+          },
+          {
+            "field": "change_label",
+            "type": "nominal",
+            "title": "Annual change"
+          },
+          {
+            "field": "band_title",
+            "type": "nominal",
+            "title": "Band"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "calculate": "datum.x0 + 12",
+          "as": "label_x"
+        },
+        {
+          "calculate": "(datum.y0 + datum.y1) / 2 - (datum.pill_height > 28 ? 7.5 : 0)",
+          "as": "label_y"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "lineBreak": "\n",
+        "lineHeight": 15
+      },
+      "encoding": {
+        "x": {
+          "field": "label_x"
+        },
+        "y": {
+          "field": "label_y"
+        },
+        "text": {
+          "field": "pill_label"
+        },
+        "color": {
+          "field": "pill_ink",
+          "type": "nominal",
+          "scale": null
+        },
+        "tooltip": [
+          {
+            "field": "category",
+            "type": "nominal",
+            "title": "Food"
+          },
+          {
+            "field": "change_label",
+            "type": "nominal",
+            "title": "Annual change"
+          },
+          {
+            "field": "band_title",
+            "type": "nominal",
+            "title": "Band"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "calculate": "datum.is_on ? 1 : 0",
+          "as": "on_count"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "food_count"
+            },
+            {
+              "op": "max",
+              "field": "on_count",
+              "as": "band_on"
+            }
+          ],
+          "groupby": [
+            "band",
+            "band_index",
+            "band_title",
+            "band_range",
+            "x0",
+            "x1"
+          ]
+        },
+        {
+          "calculate": "datum.band_range + ' · ' + datum.food_count + ' foods'",
+          "as": "band_subtitle"
+        },
+        {
+          "calculate": "datum.band_on ? 1 : 0.35",
+          "as": "heading_opacity"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "alphabetic",
+            "fontSize": 15,
+            "fontWeight": 700,
+            "color": "#17211b"
+          },
+          "encoding": {
+            "x": {
+              "field": "x0"
+            },
+            "y": {
+              "datum": 18
+            },
+            "text": {
+              "field": "band_title"
+            },
+            "opacity": {
+              "field": "heading_opacity",
+              "type": "quantitative",
+              "scale": null
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "alphabetic",
+            "fontSize": 12,
+            "fontWeight": 700,
+            "color": "#5e6c63"
+          },
+          "encoding": {
+            "x": {
+              "field": "x0"
+            },
+            "y": {
+              "datum": 38
+            },
+            "text": {
+              "field": "band_subtitle"
+            },
+            "opacity": {
+              "field": "heading_opacity",
+              "type": "quantitative",
+              "scale": null
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#d9d2c3"
+          },
+          "encoding": {
+            "x": {
+              "field": "x0"
+            },
+            "x2": {
+              "field": "x1"
+            },
+            "y": {
+              "datum": 49
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "background": null,
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial"
+  }
+}

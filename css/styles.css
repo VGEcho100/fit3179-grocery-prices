@@ -272,113 +272,6 @@ h2 {
   color: var(--ink);
 }
 
-.price-band-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  align-items: start;
-}
-
-.price-bin-heading {
-  min-height: 3.7rem;
-  margin: 0 0 0.8rem;
-  padding-bottom: 0.65rem;
-  border-bottom: 1px solid var(--line);
-}
-
-.price-bin-heading strong,
-.price-bin-heading span {
-  display: block;
-}
-
-.price-bin-heading strong {
-  font-size: 0.9rem;
-}
-
-.price-bin-heading span {
-  color: var(--muted);
-  font-size: 0.72rem;
-}
-
-.price-pill-list {
-  display: grid;
-  gap: 0.48rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.price-pill {
-  position: relative;
-  display: block;
-  padding: 0.48rem 0.68rem;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  line-height: 1.2;
-  outline-offset: 3px;
-  cursor: help;
-}
-
-.price-pill::after {
-  position: absolute;
-  z-index: 3;
-  bottom: calc(100% + 7px);
-  left: 50%;
-  padding: 0.38rem 0.55rem;
-  color: #fff;
-  background: var(--ink);
-  border-radius: 5px;
-  content: attr(data-tooltip);
-  font-size: 0.7rem;
-  font-weight: 400;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(-50%, 4px);
-  transition: opacity 130ms ease, transform 130ms ease;
-  white-space: nowrap;
-}
-
-.price-pill:hover::after,
-.price-pill:focus-visible::after {
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-
-.price-pill--falling {
-  color: #fff;
-  background: #2f6f9f;
-}
-
-.price-pill--steady {
-  color: var(--ink);
-  background: #e9e3d7;
-}
-
-.price-pill--rising {
-  color: #3f3215;
-  background: #e9b85c;
-}
-
-.price-pill--fast {
-  color: #fff;
-  background: var(--orange);
-}
-
-.price-pill,
-.price-bin-heading {
-  transition: color 260ms ease, background-color 260ms ease, opacity 260ms ease;
-}
-
-.price-pill.is-dimmed {
-  color: #b3ad9f;
-  background: #f1ede4;
-}
-
-.price-bin.is-dimmed .price-bin-heading {
-  opacity: 0.4;
-}
-
 .price-band-steps {
   display: none;
 }
@@ -458,21 +351,6 @@ h2 {
 
   .price-band-scrolly.is-scrolly .chart-kicker {
     margin-bottom: 0.6rem;
-  }
-
-  .price-band-scrolly.is-scrolly .price-bin-heading {
-    min-height: 0;
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.4rem;
-  }
-
-  .price-band-scrolly.is-scrolly .price-pill-list {
-    gap: 0.28rem;
-  }
-
-  .price-band-scrolly.is-scrolly .price-pill {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.72rem;
   }
 }
 
@@ -610,11 +488,6 @@ footer a {
   .footer-inner {
     display: grid;
   }
-
-  .price-band-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
 }
 
 @media (max-width: 620px) {
@@ -649,14 +522,6 @@ footer a {
     bottom: -0.95rem;
   }
 
-  .price-band-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .price-pill-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   main {
     padding: 0 1rem;
   }
@@ -681,9 +546,6 @@ footer a {
   .site-nav,
   .nav-links a,
   .nav-links a::after,
-  .price-pill,
-  .price-pill::after,
-  .price-bin-heading,
   .price-band-step {
     transition: none;
   }
