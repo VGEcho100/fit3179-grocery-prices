@@ -478,13 +478,74 @@ h2 {
 }
 
 .conclusion-section {
-  grid-template-columns: 1fr;
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: 2rem clamp(2rem, 6vw, 6rem);
+  align-items: center;
   border-bottom: 0;
 }
 
 .conclusion-section .section-copy {
+  grid-column: 1 / -1;
   max-width: 680px;
+}
+
+.closing-figure {
+  margin: 0;
+}
+
+.closing-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.closing-label {
+  fill: var(--ink);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.closing-value {
+  fill: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.closing-bar {
+  stroke-width: 12;
+  stroke-linecap: round;
+}
+
+.closing-bar--inflation {
+  stroke: var(--leaf);
+}
+
+.closing-bar--store {
+  stroke: var(--orange);
+}
+
+.closing-bar--range {
+  stroke: var(--orange);
+  stroke-opacity: 0.3;
+}
+
+.closing-axis,
+.closing-tick {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.closing-tick-label {
+  fill: var(--muted);
+  font-size: 13px;
+  text-anchor: middle;
+}
+
+.closing-figure figcaption {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.85rem;
 }
 
 .closing-text {
@@ -631,6 +692,10 @@ footer a {
   .hero-grid {
     grid-template-columns: 1fr;
     min-height: 0;
+  }
+
+  .conclusion-section {
+    grid-template-columns: 1fr;
   }
 }
 
