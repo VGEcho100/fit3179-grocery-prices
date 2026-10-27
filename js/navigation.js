@@ -19,6 +19,7 @@
     ["retailer-gap", "basket"],
     ["stores", "stores"],
     ["access", "access"],
+    ["conclusion", "conclusion"],
   ]);
 
   let updateRequested = false;
@@ -58,7 +59,7 @@
     });
 
     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) {
-      activeGroup = "access";
+      activeGroup = "conclusion";
     }
 
     nav.classList.toggle("is-scrolled", window.scrollY > 8);

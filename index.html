@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" />
-    <link rel="stylesheet" href="css/styles.css?v=25" />
+    <link rel="stylesheet" href="css/styles.css?v=27" />
     <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.5.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
@@ -28,6 +28,7 @@
           <a href="#basket">Basket</a>
           <a href="#stores">Stores</a>
           <a href="#access">Access</a>
+          <a href="#conclusion">Summary</a>
         </div>
       </div>
     </nav>
@@ -38,9 +39,29 @@
           <p class="eyebrow">FIT3179 DATA VISUALISATION 2</p>
           <h1>Grocery prices and supermarket access</h1>
           <p class="lede">
-            This project looks at how food prices changed across Australia and how
-            supermarket access differs across Greater Melbourne.
+            Food prices are still rising, but not evenly. This story follows the
+            Consumer Price Index (CPI), the ABS measure of how the price of a fixed
+            basket of household goods changes over time, from the national food
+            bill down to which Melbourne suburbs have a supermarket nearby.
           </p>
+          <dl class="hero-stats">
+            <div>
+              <dt>3.0%</dt>
+              <dd>Rise in Australian food prices over the year to August 2026</dd>
+            </div>
+            <div>
+              <dt>41%</dt>
+              <dd>Share of food's contribution to the CPI that comes from eating out</dd>
+            </div>
+            <div>
+              <dt>$17–$34</dt>
+              <dd>Extra cost of the dearest supermarket basket over the cheapest, by state</dd>
+            </div>
+            <div>
+              <dt>557,000</dt>
+              <dd>Greater Melbourne residents living in an area with no supermarket</dd>
+            </div>
+          </dl>
           <p class="byline">By Jin XIE · October 2026</p>
         </div>
       </div>
@@ -68,9 +89,16 @@
           <p class="section-number">2. CPI COMPOSITION</p>
           <h2>What makes up food CPI?</h2>
           <p>
-            Each square is 1% of food's contribution to the all-groups CPI in
-            August 2026. Eating out accounted for 41%, more than the three largest
-            grocery groups combined. Hover over a square to see its exact share.
+            Each square is 1% of food's contribution to the overall CPI in August
+            2026, which reflects how much households spend on each group and how
+            much its prices have changed. Eating out accounted for 41%, more than
+            the three largest grocery groups combined. Hover over a square to see
+            its exact share.
+          </p>
+          <p class="term-note">
+            <strong>n.e.c.</strong> stands for "not elsewhere classified". Food
+            products n.e.c. covers eggs, spreads, condiments, oils, snacks and
+            other packaged foods.
           </p>
         </div>
         <div class="chart-card">
@@ -236,9 +264,14 @@
           <p class="section-number">10. STORE LOCATIONS</p>
           <h2>Supermarkets across Greater Melbourne</h2>
           <p>
-            Each point is a supermarket recorded in OpenStreetMap within a Greater
-            Melbourne SA2. Select a brand in the legend to show where that group
-            is located.
+            Each point is a supermarket recorded in OpenStreetMap within Greater
+            Melbourne. Select a brand in the legend to show where that group is
+            located.
+          </p>
+          <p class="term-note">
+            <strong>SA2</strong> (Statistical Area Level 2) is an ABS area about the
+            size of a suburb, usually home to 3,000 to 25,000 people. The light
+            outlines on the map are SA2 boundaries.
           </p>
         </div>
         <div class="chart-card wide-card">
@@ -260,6 +293,47 @@
         <div class="chart-card">
           <div id="access-map" class="chart" aria-label="Supermarkets per 10,000 residents by SA2"></div>
           <p class="chart-status" id="access-map-status" role="status">Loading map…</p>
+        </div>
+      </section>
+
+      <section class="story-section conclusion-section" id="conclusion">
+        <div class="section-copy">
+          <p class="section-number">WHAT THIS MEANS</p>
+          <h2>Three things to take away</h2>
+          <p>
+            The national food inflation rate is a useful headline, but what a
+            household pays depends on what it buys, where it shops and where it
+            lives.
+          </p>
+        </div>
+        <div class="takeaways">
+          <article class="takeaway">
+            <p class="takeaway-number">01</p>
+            <h3>The headline hides the spread</h3>
+            <p>
+              Food prices rose 3.0% over the year to August 2026, but egg prices
+              fell 4.7% while beef and lamb rose 9.4%. The average sits between
+              foods that moved in opposite directions.
+            </p>
+          </article>
+          <article class="takeaway">
+            <p class="takeaway-number">02</p>
+            <h3>Where you shop matters more than a year of inflation</h3>
+            <p>
+              At 3.0%, a year of food inflation adds roughly $2 to a $75 basket.
+              In June 2026, the dearest chain charged $17 to $34 more than the
+              cheapest for the same 17 items, depending on the state.
+            </p>
+          </article>
+          <article class="takeaway">
+            <p class="takeaway-number">03</p>
+            <h3>Access depends on the suburb</h3>
+            <p>
+              About 557,000 Greater Melbourne residents live in an SA2 with no
+              supermarket. They range from growth areas such as Wollert and Tarneit
+              North to established suburbs such as Brighton East.
+            </p>
+          </article>
         </div>
       </section>
 
@@ -290,6 +364,6 @@
 
     <script src="js/maps.js?v=21"></script>
     <script src="js/price-bands.js?v=5"></script>
-    <script src="js/navigation.js?v=1"></script>
+    <script src="js/navigation.js?v=2"></script>
   </body>
 </html>
